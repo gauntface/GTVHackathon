@@ -60,7 +60,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         gridView = (GridView) findViewById(R.id.gridview);
         gridView.setAdapter(new VideoAdapter(this, videos));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
+            //@Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 playVideo((ArchiveVideo) adapterView.getItemAtPosition(i));
             }
@@ -68,7 +68,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
-    @Override
+    //@Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnHorror:

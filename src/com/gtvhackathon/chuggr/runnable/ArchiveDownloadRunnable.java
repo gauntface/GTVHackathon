@@ -157,12 +157,20 @@ public class ArchiveDownloadRunnable implements Runnable {
         // Inspect Response string
         // Split by "<file name=\"
 
-        String tmp[]  = responseString.split("<file name=\"");
+        video.setVideoURL("");
+        video.setThumb("");
+
+        String tmp[]  = responseString.split("<file name");
         for (String s:tmp){
-            if (s.contains(".mp4")){
-                String tmp2[] = responseString.split("\"");
-                Log.e(C.TAG, " "+tmp2[0]+" "+tmp2[1]);
+            String tmp2[] = s.split(" source=");
+            if (tmp2[0].contains(".mp4")){
+                String s3 = tmp2[0];
+                s3=s3.replace("=","");
+                s3=s3.replace("\"","");
+                Log.e(C.TAG, "MP4: "+s3);
+                video.setVideoURL("http://archive.org/download/"+video.getIdentifier()+"/"+s3);
             }
+
         }
 
         // http://archive.org/download/LastMinuteCreativeSolutions_12/Random.mp4

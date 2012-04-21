@@ -18,6 +18,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import android.view.animation.*;
 import com.gtvhackathon.chuggr.TimerRunnable.TimerListener;
 import com.gtvhackathon.chuggr.TimerRunnable.TimerProvider;
 import com.gtvhackathon.chuggr.windows.EventPopupWindow;
@@ -35,7 +36,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
-import android.view.animation.AnimationUtils;
 import android.widget.MediaController;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -153,7 +153,6 @@ public class VideoPlayerActivity extends Activity
         });
         
         mEventPopupView = findViewById(R.id.event_popup);
-        
         mTimeProvider = new VideoTimerProvider(mVideoView, this);
         
         mExecutor = Executors.newFixedThreadPool(1);
@@ -182,7 +181,24 @@ public class VideoPlayerActivity extends Activity
         //mEventPopup = new EventPopupWindow(popupLayout, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, false);
         //mEventPopup.setAnimationStyle(R.style.EventPopupAnimation);
         //mEventPopup.showAtLocation(this.mVideoView, Gravity.CENTER, 0, 0);
-        mEventPopupView.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.event_popup_anim_in));
+
+        Animation fadeIn = new AlphaAnimation(0, 1);
+        fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
+        fadeIn.setDuration(1000);
+
+
+
+        Animation fadeOut = new AlphaAnimation(1, 0);
+        fadeOut.setInterpolator(new AccelerateInterpolator()); //and this
+        fadeOut.setStartOffset(1000);
+        fadeOut.setDuration(1000);
+
+        AnimationSet animation = new AnimationSet(false); //change to false
+        animation.addAnimation(fadeIn);
+        animation.addAnimation(fadeOut);
+
+        mEventPopupView.startAnimation(animation);
+
     }
 
 }

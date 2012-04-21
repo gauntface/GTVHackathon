@@ -14,6 +14,7 @@ public class VideoTimerProvider implements TimerProvider {
     
     public VideoTimerProvider(VideoView videoView, Context context) {
         mVideoView = videoView;
+        mEventTimes = new int[]{10,20};
         XMLParser xmlParser = new XMLParser();
         mEventTimes = xmlParser.parse(XMLParser.loadFile("test.xml", context));
     }
