@@ -10,7 +10,7 @@
       android:orientation="vertical"
       android:layout_width="200dip"
       android:layout_height="fill_parent"
-      android:background="@color/lightBackground"
+      android:background="@drawable/gradient_background"
             >
         <LinearLayout
                 android:id="@+id/sidebarLayout"
@@ -25,6 +25,7 @@
                             android:textSize="12pt"
                             android:textColor="#000"
                             android:textStyle="bold"
+                            android:paddingLeft="7dip"
                             android:text="@string/categories"
                             android:paddingBottom="10dip"
                             />

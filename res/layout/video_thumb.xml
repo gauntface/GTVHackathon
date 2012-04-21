@@ -13,7 +13,7 @@
         android:paddingTop="15dip"
         />
     <com.gtvhackathon.chuggr.EllipsizingTextView android:text="VideoName"
-              android:textSize="10pt"
+              android:textSize="8pt"
               android:maxLines="2"
               android:lines="2"
               android:layout_width="match_parent" android:layout_height="wrap_content"
