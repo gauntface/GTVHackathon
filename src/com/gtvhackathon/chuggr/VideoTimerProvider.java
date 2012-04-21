@@ -13,7 +13,7 @@ public class VideoTimerProvider implements TimerProvider {
     
     public VideoTimerProvider(VideoView videoView) {
         mVideoView = videoView;
-        mEventTimes = new int[]{1,2};
+        mEventTimes = new int[]{10,20};
     }
 
     @Override
