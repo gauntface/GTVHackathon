@@ -9,5 +9,13 @@
     android:layout_height="wrap_content"
     android:text="Hello World, VideoActivity"
     />
+
+<Button
+        android:id="@+id/btnVideo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/play"
+        ></Button>
+
 </LinearLayout>
 
