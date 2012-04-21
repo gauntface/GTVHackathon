@@ -18,6 +18,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.view.animation.*;
 import android.widget.*;
@@ -178,35 +179,76 @@ public class VideoPlayerActivity extends Activity
     @Override
     public void onEventTriggered(int eventIndex) {
         Log.v(C.TAG, "onEventTriggered() for event = "+eventIndex);
-        //if(mEventPopup != null) {
-            //mEventPopup.dismiss();
-        //    return;
-        //}
-        
-        //LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        //View popupLayout = inflater.inflate(R.layout.event_popup, null, false);
-        
-        //mEventPopup = new EventPopupWindow(popupLayout, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, false);
-        //mEventPopup.setAnimationStyle(R.style.EventPopupAnimation);
-        //mEventPopup.showAtLocation(this.mVideoView, Gravity.CENTER, 0, 0);
 
-        Animation fadeIn = new AlphaAnimation(0, 1);
-        fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
-        fadeIn.setDuration(1000);
-        fadeIn.setRepeatCount(0);
-
-        Animation fadeOut = new AlphaAnimation(1, 0);
-        fadeOut.setInterpolator(new AccelerateInterpolator()); //and this
-        fadeOut.setStartOffset(1000);
-        fadeOut.setDuration(1000);
-        fadeOut.setRepeatCount(0);
-        
-        AnimationSet animation = new AnimationSet(false); //change to false
-        animation.addAnimation(fadeIn);
-        animation.addAnimation(fadeOut);
-
-        mEventPopupView.startAnimation(animation);
+        new AnimationBeerAsyncTask().execute();
 
     }
+
+
+    private class AnimationBeerAsyncTask extends AsyncTask<String, Integer, Integer> {
+
+        protected Integer doInBackground(String... strings) {
+
+            publishProgress(1);
+
+            try {
+                Thread.sleep(2000);
+                // Do some stuff
+            } catch (Exception e) {
+                e.getLocalizedMessage();
+            }
+            publishProgress(2);
+
+            try {
+                Thread.sleep(1000);
+                // Do some stuff
+            } catch (Exception e) {
+                e.getLocalizedMessage();
+            }
+
+            publishProgress(3);
+
+            return 0;
+        }
+
+
+        protected void onProgressUpdate(Integer... progress) {
+
+            AnimationSet animation = new AnimationSet(false); //change to false
+
+            if (progress[0]==1){
+                mEventPopupView.setVisibility(View.VISIBLE);
+
+                AnimationSet as = new AnimationSet(false);
+
+                Animation fadeIn = new AlphaAnimation(0, 1);
+                Animation zoom = new ScaleAnimation(0.5f,1.0f,0.5f,1.0f,500f,500f);
+                zoom.setInterpolator(new DecelerateInterpolator());
+                fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
+                fadeIn.setDuration(1000);
+                zoom.setDuration(1000);
+                zoom.setStartOffset(500);
+
+                as.addAnimation(fadeIn);
+                as.addAnimation(zoom);
+
+                mEventPopupView.startAnimation(as);
+            }
+            else if (progress[0]==2){
+                Animation fadeOut = new AlphaAnimation(1, 0);
+                fadeOut.setInterpolator(new DecelerateInterpolator()); //add this
+                fadeOut.setDuration(1000);
+                animation.addAnimation(fadeOut);
+                mEventPopupView.startAnimation(animation);
+            }
+            else if (progress[0]==3){
+                mEventPopupView.setVisibility(View.GONE);
+            }
+
+            return;
+        }
+
+    }
+
 
 }
