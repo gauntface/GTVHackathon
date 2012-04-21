@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -33,10 +32,8 @@ public class ArchiveDownloadRunnable implements Runnable {
     @Override
     public void run() {
 
-
         ArrayList<ArchiveVideo> videoList = new ArrayList<ArchiveVideo>();
-//        String url = "http://archive.org/advancedsearch.php?q=mediatype%3Amovies+AND+subject%3A%22"+mQuery+"%22&fl%5B%5D=avg_rating&fl%5B%5D=description&fl%5B%5D=downloads&fl%5B%5D=identifier&fl%5B%5D=title&sort%5B%5D=downloads+desc&sort%5B%5D=&sort%5B%5D=&rows=50&page=1&output=json&callback=callback&save=yes#raw";
-        String url = "http://archive.org/advancedsearch.php?q=mediatype%3Amovies+AND+subject%3A%22"+mQuery+"%22&fl%5B%5D=avg_rating&fl%5B%5D=call_number&fl%5B%5D=collection&fl%5B%5D=contributor&fl%5B%5D=coverage&fl%5B%5D=creator&fl%5B%5D=date&fl%5B%5D=description&fl%5B%5D=downloads&fl%5B%5D=foldoutcount&fl%5B%5D=format&fl%5B%5D=headerImage&fl%5B%5D=identifier&fl%5B%5D=imagecount&fl%5B%5D=language&fl%5B%5D=licenseurl&fl%5B%5D=mediatype&fl%5B%5D=month&fl%5B%5D=num_reviews&fl%5B%5D=oai_updatedate&fl%5B%5D=publicdate&fl%5B%5D=publisher&fl%5B%5D=rights&fl%5B%5D=scanningcentre&fl%5B%5D=source&fl%5B%5D=subject&fl%5B%5D=title&fl%5B%5D=type&fl%5B%5D=volume&fl%5B%5D=week&fl%5B%5D=year&sort%5B%5D=downloads+desc&sort%5B%5D=&sort%5B%5D=&rows=10&page=1&output=json&callback=&save=yes#raw";
+        String url = "http://archive.org/advancedsearch.php?q=mediatype%3Amovies+AND+subject%3A%22"+mQuery+"%22&fl%5B%5D=avg_rating&fl%5B%5D=call_number&fl%5B%5D=collection&fl%5B%5D=contributor&fl%5B%5D=coverage&fl%5B%5D=creator&fl%5B%5D=date&fl%5B%5D=description&fl%5B%5D=downloads&fl%5B%5D=foldoutcount&fl%5B%5D=format&fl%5B%5D=headerImage&fl%5B%5D=identifier&fl%5B%5D=imagecount&fl%5B%5D=language&fl%5B%5D=licenseurl&fl%5B%5D=mediatype&fl%5B%5D=month&fl%5B%5D=num_reviews&fl%5B%5D=oai_updatedate&fl%5B%5D=publicdate&fl%5B%5D=publisher&fl%5B%5D=rights&fl%5B%5D=scanningcentre&fl%5B%5D=source&fl%5B%5D=subject&fl%5B%5D=title&fl%5B%5D=type&fl%5B%5D=volume&fl%5B%5D=week&fl%5B%5D=year&sort%5B%5D=downloads+desc&sort%5B%5D=&sort%5B%5D=&rows=20&page=1&output=json&callback=&save=yes#raw";
 
         //initialize
         InputStream inputStream = null;
@@ -112,11 +109,9 @@ public class ArchiveDownloadRunnable implements Runnable {
         }
         
         for(ArchiveVideo video : videoList) {
-            Log.e(this.getClass().toString(), "GETTING MOAR" + video.getIdentifier());
             getVideoThumbAndUrl(video);
             mListener.onSingleItemDownload(video);
         }
-
     }
 
     public void getVideoThumbAndUrl(ArchiveVideo video) {

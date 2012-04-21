@@ -99,15 +99,15 @@
                         android:layout_height="wrap_content"
                         android:text="@string/welcome" />
 
-            <TextView
-                    android:paddingTop="30dip"
-                    android:textSize="22dip"
-                    android:textColor="#fff"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="bottom|right"
-                    android:linksClickable="true"
-                    android:text="@string/drinkaware" />
+                <TextView
+                        android:paddingTop="30dip"
+                        android:textSize="22dip"
+                        android:textColor="#fff"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom|right"
+                        android:linksClickable="true"
+                        android:text="@string/drinkaware" />
 
             </LinearLayout>
 
