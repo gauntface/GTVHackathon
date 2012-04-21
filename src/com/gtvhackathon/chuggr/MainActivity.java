@@ -82,8 +82,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
             videos.add( new Video(uriThumb, uriVideo, "Video Title", "Subtitle", "Description"));
             videos.add( new Video(uriThumb, uriVideo, "Video Title", "Subtitle", "Description"));
             videos.add( new Video(uriThumb, uriVideo, "Video Title", "Subtitle", "Description"));
-            videos.add( new Video(uriThumb, uriVideo, "Video Title", "Subtitle", "Description"));
-            videos.add( new Video(uriThumb, uriVideo, "Video Title", "Subtitle", "Description"));
+            uriVideo = Uri.parse("http://archive.org/download/Black_Sabbath_US_trailer/Black_Sabbath_US_trailer.mp4");
+
+            videos.add( new Video(uriThumb, uriVideo, "Archive.org vid", "Subtitle", "Description"));
+            uriVideo = Uri.parse("http://www.videodetective.net/player.aspx?cmd=6&fmt=4&customerid=699923&videokbrate=80&publishedid=244133");
+
+            videos.add( new Video(uriThumb, uriVideo, "IA VIDEO", "Subtitle", "Description"));
         }
 
         @Override
@@ -113,29 +117,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 layout = (LinearLayout) convertView;
             }
 
-//            layout.setOnClickListener(new MyOnClickListener(position));
-
-            ((TextView)layout.findViewById(R.id.videoTitle)).setText("Video " + position);
+            ((TextView)layout.findViewById(R.id.videoTitle)).setText(videos.get(position).mTitle);
 
             return layout;
         }
-
-//        class MyOnClickListener implements View.OnClickListener
-//        {
-//            private final int position;
-//
-//            public MyOnClickListener(int position)
-//            {
-//                this.position = position;
-//            }
-//
-//            @Override
-//            public void onClick(View v)
-//            {
-//               playVideo(videos.get(this.position));
-//            }
-//        }
-
 
     }
 
