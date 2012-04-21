@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">chuggr</string>
     <string name="play">Play</string>
+    <string name="category">Caterogy</string>
 </resources>
