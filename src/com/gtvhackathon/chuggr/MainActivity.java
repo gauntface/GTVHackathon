@@ -41,31 +41,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         ((Button)findViewById(R.id.btnSciFi)).setOnClickListener(this);
 
 
-        ArrayList<ArchiveVideo> videos = new ArrayList<ArchiveVideo>();
-
-        Uri uriVideo = Uri.parse("http://www.stealthcopter.com/video1.mp4");
-        //"android.resource://com.gtvhackathon.chuggr/raw/video1");
-        Uri uriThumb = Uri.parse("android.resource://com.gtvhackathon.chuggr/" + R.drawable.ic_launcher);
-
-        ArchiveVideo video = new ArchiveVideo();
-        video.setTitle("Sab");
-        video.setThumb("");
-        video.setVideoURL("http://archive.org/download/Black_Sabbath_US_trailer/Black_Sabbath_US_trailer.mp4");
-        video.setDescription("Video description....");
-
-
-        videos.add(video);
-
-        ArchiveVideo video2 = new ArchiveVideo();
-        video2.setTitle("Xmen");
-        video2.setThumb("");
-        video2.setVideoURL("http://www.videodetective.net/player.aspx?cmd=6&fmt=4&customerid=699923&videokbrate=80&publishedid=244133");
-        video2.setDescription("Video description....");
-
-        videos.add(video2);
-
         gridView = (GridView) findViewById(R.id.gridview);
-        gridView.setAdapter(new VideoAdapter(this, videos));
+
+        //gridView.setAdapter(new VideoAdapter(this, videos));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -185,8 +163,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             // Remove spinner...
             if (null != bmp)
                 iv.setImageBitmap(bmp);
-            else
-                Log.e(MainActivity.this.getClass().toString(),"The Bitmap is NULL");
+            else {
+                iv.setImageResource(R.drawable.default_thumb2);
+            }
         }
     }
 
@@ -219,6 +198,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         protected void onPreExecute(){
             // Remove current
             gridView.setAdapter(null);
+            findViewById(R.id.hintScreen).setVisibility(View.GONE);
             ((ProgressBar)findViewById(R.id.progressMain)).setVisibility(View.VISIBLE);
             // Add spinner
         }
