@@ -19,6 +19,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import android.view.animation.*;
+import android.widget.*;
 import com.gtvhackathon.chuggr.TimerRunnable.TimerListener;
 import com.gtvhackathon.chuggr.TimerRunnable.TimerProvider;
 import com.gtvhackathon.chuggr.windows.EventPopupWindow;
@@ -36,10 +37,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
-import android.widget.MediaController;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-import android.widget.VideoView;
 
 // The VideoPlayerActivity which sets up a video view, attaches a MediaControler to it.
 // Communication is via private intent.  This could use the MediaPlayer API's but that would
@@ -120,14 +117,14 @@ public class VideoPlayerActivity extends Activity
         ((TextView) findViewById(R.id.videoTitle)).setText(b.getString("title"));
         ((TextView) findViewById(R.id.videoSubTitle)).setText(b.getString("subtitle"));
         ((TextView) findViewById(R.id.videoDescription)).setText(b.getString("description"));
-
+         ((RatingBar) findViewById(R.id.ratingBar1)).setRating(b.getFloat("rating"));
         mVideoView = (VideoView) findViewById(R.id.videoView1);
         mVideoView.setVideoPath(b.getString("source"));
         mVideoView.setOnCompletionListener(this);
         mVideoView.setOnErrorListener(this);
 
         MediaController mc = new MediaController(this, true);
-//        mVideoView.getCurrentPosition()
+
         mc.setMediaPlayer(mVideoView);
         mc.setAnchorView(mVideoView);
         mVideoView.setMediaController(mc);
@@ -186,8 +183,6 @@ public class VideoPlayerActivity extends Activity
         Animation fadeIn = new AlphaAnimation(0, 1);
         fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
         fadeIn.setDuration(1000);
-
-
 
         Animation fadeOut = new AlphaAnimation(1, 0);
         fadeOut.setInterpolator(new AccelerateInterpolator()); //and this

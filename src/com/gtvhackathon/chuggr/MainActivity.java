@@ -4,8 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,6 +38,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         ((Button)findViewById(R.id.btnHorror)).setOnClickListener(this);
         ((Button)findViewById(R.id.btnComedy)).setOnClickListener(this);
+        ((Button)findViewById(R.id.btnSciFi)).setOnClickListener(this);
+
 
         ArrayList<ArchiveVideo> videos = new ArrayList<ArchiveVideo>();
 
@@ -76,6 +83,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btnComedy:
                 new DownloadFilmInfoAsyncTask().execute("Comedy");
+                break;
+            case R.id.btnSciFi:
+                new DownloadFilmInfoAsyncTask().execute("Sci-Fi");
                 break;
         }
     }
@@ -130,6 +140,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 layout = (LinearLayout) convertView;
             }
 
+            final ImageView iv = (ImageView) layout.findViewById(R.id.videoThumbnail);
+            new ImageViewLoadAsyncTask().execute(iv, videos.get(position).getThumb());
+
             ((TextView)layout.findViewById(R.id.videoTitle)).setText(videos.get(position).getTitle());
 
             return layout;
@@ -140,10 +153,39 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
 
+    private class ImageViewLoadAsyncTask extends AsyncTask<Object, Integer, Integer> {
+        private Bitmap bmp;
+        private ImageView iv;
 
+        protected Integer doInBackground(Object... objects) {
+            HttpURLConnection con=null;
+            try{
+
+                iv = (ImageView) objects[0];
+                String url = (String) objects[1];
+
+                URL ulrn = new URL(url);
+                con = (HttpURLConnection)ulrn.openConnection();
+                InputStream is = con.getInputStream();
+                bmp = BitmapFactory.decodeStream(is);
+                publishProgress(1);
+            }catch(Exception e){
+                Log.e(MainActivity.this.getClass().toString(),e.toString());
+            }
+            finally { if (con != null) { con.disconnect(); } }
+           return 0;
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+            // Remove spinner...
+            if (null != bmp)
+                iv.setImageBitmap(bmp);
+            else
+                Log.e(MainActivity.this.getClass().toString(),"The Bitmap is NULL");
+        }
+    }
 
     private class DownloadFilmInfoAsyncTask extends AsyncTask<String, Integer, Integer> {
-//        private ArrayList<ArchiveVideo> videos;
 
         protected Integer doInBackground(String... strings) {
             // Chuck spinner on there...

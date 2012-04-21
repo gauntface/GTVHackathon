@@ -10,12 +10,12 @@
       android:orientation="vertical"
       android:layout_width="200dip"
       android:layout_height="fill_parent"
-      android:padding="10dip"
       android:background="@color/lightBackground"
             >
         <LinearLayout
                 android:id="@+id/sidebarLayout"
                 android:orientation="vertical"
+                android:padding="10dip"
                 android:layout_width="200dip"
                 android:layout_height="fill_parent"
                 >
@@ -41,10 +41,10 @@
                     android:text="Horror"
                     />
             <Button
-                    android:id="@+id/btnCat3"
+                    android:id="@+id/btnSciFi"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="The Rest"
+                    android:text="Sci-Fi"
                     />
         </LinearLayout>
      </ScrollView>
@@ -71,7 +71,7 @@
                   android:layout_height="fill_parent"
                   android:columnWidth="180dp"
                   android:numColumns="auto_fit"
-                  android:verticalSpacing="10dp"
+                  android:verticalSpacing="20dp"
                   android:horizontalSpacing="10dp"
                   android:stretchMode="columnWidth"
                   android:gravity="center"

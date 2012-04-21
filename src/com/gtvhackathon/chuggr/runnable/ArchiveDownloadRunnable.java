@@ -163,12 +163,18 @@ public class ArchiveDownloadRunnable implements Runnable {
         String tmp[]  = responseString.split("<file name");
         for (String s:tmp){
             String tmp2[] = s.split(" source=");
+            String s3 = tmp2[0];
             if (tmp2[0].contains(".mp4")){
-                String s3 = tmp2[0];
                 s3=s3.replace("=","");
                 s3=s3.replace("\"","");
                 Log.e(C.TAG, "MP4: "+s3);
                 video.setVideoURL("http://archive.org/download/"+video.getIdentifier()+"/"+s3);
+            }
+            else if (tmp2[0].contains(".jpg")){
+                s3=s3.replace("=","");
+                s3=s3.replace("\"","");
+                Log.e(C.TAG, "JPG: "+s3);
+                video.setThumb("http://archive.org/download/"+video.getIdentifier()+"/"+s3);
             }
 
         }
