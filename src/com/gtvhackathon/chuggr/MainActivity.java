@@ -25,7 +25,7 @@ import com.gtvhackathon.chuggr.controller.ArchiveVideoController;
 import com.gtvhackathon.chuggr.controller.ArchiveVideoController.ArchiveListener;
 
 public class MainActivity extends Activity implements View.OnClickListener {
-    
+
     private ArchiveVideoController mArchiveVideoController;
     private GridView gridView;
 
@@ -67,7 +67,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         gridView = (GridView) findViewById(R.id.gridview);
         gridView.setAdapter(new VideoAdapter(this, videos));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            //@Override
+            @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 playVideo((ArchiveVideo) adapterView.getItemAtPosition(i));
             }
@@ -75,7 +75,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
-    //@Override
+    @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnHorror:
@@ -103,14 +103,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public class VideoAdapter extends BaseAdapter {
         private Context mContext;
-        ArrayList<ArchiveVideo> videos = new ArrayList<ArchiveVideo>();
+        public ArrayList<ArchiveVideo> videos = new ArrayList<ArchiveVideo>();
 
         public VideoAdapter(Context c, ArrayList<ArchiveVideo> videos) {
             mContext = c;
 
-                for (ArchiveVideo video : videos){
-                    this.videos.add(video);
-                }
+            for (ArchiveVideo video : videos){
+                this.videos.add(video);
+            }
         }
 
         @Override
@@ -153,6 +153,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
 
+
+
+
+
+
     private class ImageViewLoadAsyncTask extends AsyncTask<Object, Integer, Integer> {
         private Bitmap bmp;
         private ImageView iv;
@@ -173,7 +178,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Log.e(MainActivity.this.getClass().toString(),e.toString());
             }
             finally { if (con != null) { con.disconnect(); } }
-           return 0;
+            return 0;
         }
 
         protected void onProgressUpdate(Integer... progress) {
@@ -194,7 +199,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             mArchiveVideoController.downloadArchiveData(new ArchiveListener() {
 
                 @Override
-                public void onDownloadComplete() {
+                public void onSingleItemDownload() {
                     publishProgress(1);
                 }
 
@@ -215,7 +220,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             // Remove current
             gridView.setAdapter(null);
             ((ProgressBar)findViewById(R.id.progressMain)).setVisibility(View.VISIBLE);
-               // Add spinner
+            // Add spinner
         }
 
         protected void onPostExecute(Long result) {
@@ -226,12 +231,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         protected void onProgressUpdate(Integer... progress) {
             ((ProgressBar)findViewById(R.id.progressMain)).setVisibility(View.GONE);
 
-            ArrayList<ArchiveVideo> temp = mArchiveVideoController.getVideos();
-
-            if (temp!=null){
+            if (gridView.getAdapter()==null){
                 gridView.setAdapter(new VideoAdapter(MainActivity.this, mArchiveVideoController.getVideos()));
             }
-            else Log.e(MainActivity.this.getClass().toString(), "NULL");
+            else{
+                ((VideoAdapter)gridView.getAdapter()).videos = mArchiveVideoController.getVideos();
+                ((VideoAdapter) gridView.getAdapter()).notifyDataSetChanged();
+            }
+
+            //gridView.setAdapter(new VideoAdapter(MainActivity.this, mArchiveVideoController.getVideos()));
 
         }
 
