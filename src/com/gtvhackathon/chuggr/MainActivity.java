@@ -27,6 +27,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         GridView g = (GridView) findViewById(R.id.gridview);
         g.setAdapter(new VideoAdapter(this));
+        g.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                playVideo((Video) adapterView.getItemAtPosition(i));
+            }
+        });
 
     }
 
@@ -107,28 +113,28 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 layout = (LinearLayout) convertView;
             }
 
-            layout.setOnClickListener(new MyOnClickListener(position));
+//            layout.setOnClickListener(new MyOnClickListener(position));
 
             ((TextView)layout.findViewById(R.id.videoTitle)).setText("Video " + position);
 
             return layout;
         }
 
-        class MyOnClickListener implements View.OnClickListener
-        {
-            private final int position;
-
-            public MyOnClickListener(int position)
-            {
-                this.position = position;
-            }
-
-            @Override
-            public void onClick(View v)
-            {
-               playVideo(videos.get(this.position));
-            }
-        }
+//        class MyOnClickListener implements View.OnClickListener
+//        {
+//            private final int position;
+//
+//            public MyOnClickListener(int position)
+//            {
+//                this.position = position;
+//            }
+//
+//            @Override
+//            public void onClick(View v)
+//            {
+//               playVideo(videos.get(this.position));
+//            }
+//        }
 
 
     }
