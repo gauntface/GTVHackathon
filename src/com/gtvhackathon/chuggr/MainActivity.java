@@ -1,14 +1,17 @@
 package com.gtvhackathon.chuggr;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
 import java.net.URI;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     /** Called when the activity is first created. */
@@ -18,17 +21,35 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        ((Button)findViewById(R.id.btnVideo)).setOnClickListener(this);
+        // Add content based on category selected:
+        addContentFromCategory();
 
 
+
+    }
+
+    private void addContentFromCategory() {
+        LinearLayout contentLayout = (LinearLayout) findViewById(R.id.contentView);
+
+        Context c = getApplicationContext();
+        LayoutInflater mInflater = (LayoutInflater) c.getSystemService(c.LAYOUT_INFLATER_SERVICE);
+
+        for (int i=0; i<3; i++){
+            View v;
+            v = mInflater.inflate(R.layout.video_thumb, contentLayout, false);
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    playVideo();
+                }
+            });
+            contentLayout.addView(v);
+        }
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btnVideo:
-                    playVideo();
-                break;
         }
     }
 

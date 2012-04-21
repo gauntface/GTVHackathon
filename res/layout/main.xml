@@ -3,41 +3,48 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/darkBackground"
     >
 
     <ScrollView
       android:orientation="vertical"
       android:layout_width="200dip"
       android:layout_height="fill_parent"
-      android:background="#ff0"
+      android:background="@color/lightBackground"
             >
         <LinearLayout
                 android:id="@+id/sidebarLayout"
                 android:orientation="vertical"
                 android:layout_width="200dip"
                 android:layout_height="fill_parent"
-                android:background="#ff0"
                 >
                     <Button
                     android:id="@+id/btnCat1"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/category"
+                    android:text="Comedy"
+                    />
+            <Button
+                    android:id="@+id/btnCat2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Horror"
+                    />
+            <Button
+                    android:id="@+id/btnCat3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="The Rest"
                     />
         </LinearLayout>
      </ScrollView>
 
     <LinearLayout
+            android:id="@+id/contentView"
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             >
-                <Button
-                android:id="@+id/btnVideo"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/play"
-                />
     </LinearLayout>
 
 
