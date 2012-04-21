@@ -14,6 +14,13 @@
 
 package com.gtvhackathon.chuggr;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import com.gtvhackathon.chuggr.TimerRunnable.TimerListener;
+import com.gtvhackathon.chuggr.TimerRunnable.TimerProvider;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -34,12 +41,16 @@ import android.widget.VideoView;
 
 public class VideoPlayerActivity extends Activity
         implements AudioManager.OnAudioFocusChangeListener, MediaPlayer.OnCompletionListener,
-        MediaPlayer.OnErrorListener {
+        MediaPlayer.OnErrorListener, TimerProvider, TimerListener {
+    
     public static final String TAG = "VPActivity";
 
     public VideoView mVideoView = null;
     private LayoutParams mDefaultVideoViewSize;
 
+    private TimerRunnable mTimerRunnable;
+    private ExecutorService mExecutor;
+    
     // Handle AudioFocus issues
     @Override
     public void onAudioFocusChange(int focusChange) {
@@ -131,6 +142,29 @@ public class VideoPlayerActivity extends Activity
                 v.setLayoutParams(lp);
             }
         });
+        
+        mExecutor = Executors.newFixedThreadPool(1);
+        mTimerRunnable = new TimerRunnable(this, this);
+        mExecutor.execute(mTimerRunnable);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mTimerRunnable.kill();
+    }
+    
+    @Override
+    public int getVideoPosition() {
+        if(mVideoView != null) {
+            return mVideoView.getCurrentPosition();
+        }
+        return -1;
+    }
+
+    @Override
+    public void onEventTriggered() {
+        
     }
 
 }
