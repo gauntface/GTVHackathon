@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gtvvideo>
+    <event>
+        <timestamp time="25"/>
+        <timestamp time="75"/>
+        <drink>Drink One Shot</drink>
+    </event>
+</gtvvideo>
