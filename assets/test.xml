@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <gtvvideo>
     <event>
-        <timestamp time="2"/>
-        <timestamp time="5"/>
-        <timestamp time="10"/>
-        <timestamp time="20"/>
-        <timestamp time="30"/>
-        <timestamp time="45"/>
-        <timestamp time="75"/>
+        <timestamp time="2" name="Weird Lady" />
+        <timestamp time="5" name="Weird Lady"/>
+        <timestamp time="10" name="Weird Lady"/>
+        <timestamp time="20" name="Weird Lady"/>
+        <timestamp time="30" name="Weird Lady"/>
+        <timestamp time="45" name="Weird Lady"/>
+        <timestamp time="75" name="Weird Lady"/>
         <drink>Drink One Shot</drink>
     </event>
 </gtvvideo>

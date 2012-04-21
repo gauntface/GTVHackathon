@@ -179,15 +179,22 @@ public class VideoPlayerActivity extends Activity
     @Override
     public void onEventTriggered(int eventIndex) {
         Log.v(C.TAG, "onEventTriggered() for event = "+eventIndex);
+        eventAnimateBeerTrigger(eventIndex, null);
+    }
 
-        new AnimationBeerAsyncTask().execute();
-
+    public void eventAnimateBeerTrigger(int eventIndex, String text){
+        if (text==null) text="Drink!";
+        new AnimationBeerAsyncTask().execute(text);
     }
 
 
     private class AnimationBeerAsyncTask extends AsyncTask<String, Integer, Integer> {
 
+        private String mString = "";
+
         protected Integer doInBackground(String... strings) {
+
+            mString=strings[0];
 
             publishProgress(1);
 
@@ -207,6 +214,8 @@ public class VideoPlayerActivity extends Activity
         protected void onProgressUpdate(Integer... progress) {
 
             AnimationSet animation = new AnimationSet(false); //change to false
+
+            ((TextView)mEventPopupView.findViewById(R.id.textDrink)).setText(mString);
 
             if (progress[0]==1){
                 mEventPopupView.setVisibility(View.VISIBLE);
