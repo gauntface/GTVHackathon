@@ -7,13 +7,15 @@
     <ImageView
         android:id="@+id/videoThumbnail"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxHeight="150dip"
+        android:layout_height="100dip"
         android:src="@drawable/default_thumb2"
         android:layout_gravity="center"
+        android:paddingTop="15dip"
         />
-    <TextView android:text="VideoName"
+    <com.gtvhackathon.chuggr.EllipsizingTextView android:text="VideoName"
               android:textSize="10pt"
+              android:maxLines="2"
+              android:lines="2"
               android:layout_width="match_parent" android:layout_height="wrap_content"
               android:id="@+id/videoTitle" android:textColor="@color/Title"
               android:gravity="center_horizontal"

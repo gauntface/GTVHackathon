@@ -165,7 +165,7 @@ public class VideoPlayerActivity extends Activity
                 findViewById(R.id.controlsLayout).setVisibility(View.GONE);
             }
         };
-        handler.postDelayed(runnable, 5500);
+        handler.postDelayed(runnable, 8000);
 
     }
 
