@@ -30,7 +30,7 @@ public class ArchiveVideoController {
     private Runnable mDownloadRunnable;
     private ExecutorService mExecutors;
     private ArchiveListener mListener;
-    private ArrayList<ArchiveVideo> mVideoList;
+    private ArrayList<ArchiveVideo> mVideoList = new ArrayList<ArchiveVideo>();
 
     public ArchiveVideoController() {
         mExecutors = Executors.newFixedThreadPool(1);
@@ -43,12 +43,12 @@ public class ArchiveVideoController {
         if (mDownloadRunnable == null) {
             mDownloadRunnable = new ArchiveDownloadRunnable(new ArchiveDownloadRunnableListener() {
 
-                @Override
-                public void onDataDownloaded(ArrayList<ArchiveVideo> videos) {
-                    mVideoList = videos;
-                    mListener.onDownloadComplete();
-                }
 
+                @Override
+                public void onSingleItemDownload(ArchiveVideo video) {
+                    mVideoList.add(video);
+                    mListener.onSingleItemDownload();
+                }
             }, query);
             mExecutors.execute(mDownloadRunnable);
         }
@@ -59,8 +59,7 @@ public class ArchiveVideoController {
     }
 
     public interface ArchiveListener {
-        public void onDownloadComplete();
-
+        public void onSingleItemDownload();
         public void onError();
     }
 }

@@ -115,7 +115,6 @@ public class VideoPlayerActivity extends Activity
         final Bundle b = i.getBundleExtra("com.gtvhackathon.chuggr");
 
         ((TextView) findViewById(R.id.videoTitle)).setText(b.getString("title"));
-        ((TextView) findViewById(R.id.videoSubTitle)).setText(b.getString("subtitle"));
         ((TextView) findViewById(R.id.videoDescription)).setText(b.getString("description"));
          ((RatingBar) findViewById(R.id.ratingBar1)).setRating(b.getFloat("rating"));
         mVideoView = (VideoView) findViewById(R.id.videoView1);

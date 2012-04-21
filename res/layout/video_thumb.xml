@@ -8,6 +8,7 @@
         android:id="@+id/videoThumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxHeight="150dip"
         android:src="@drawable/default_thumb2"
         android:layout_gravity="center"
         />
