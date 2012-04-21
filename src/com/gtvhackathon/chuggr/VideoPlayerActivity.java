@@ -192,15 +192,7 @@ public class VideoPlayerActivity extends Activity
             publishProgress(1);
 
             try {
-                Thread.sleep(2000);
-                // Do some stuff
-            } catch (Exception e) {
-                e.getLocalizedMessage();
-            }
-            publishProgress(2);
-
-            try {
-                Thread.sleep(1000);
+                Thread.sleep(3000);
                 // Do some stuff
             } catch (Exception e) {
                 e.getLocalizedMessage();
@@ -222,24 +214,26 @@ public class VideoPlayerActivity extends Activity
                 AnimationSet as = new AnimationSet(false);
 
                 Animation fadeIn = new AlphaAnimation(0, 1);
-                Animation zoom = new ScaleAnimation(0.5f,1.0f,0.5f,1.0f,500f,500f);
+                Animation zoom = new ScaleAnimation(0.5f,1.0f,0.5f,1.0f,250f,250f);
                 zoom.setInterpolator(new DecelerateInterpolator());
-                fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
-                fadeIn.setDuration(1000);
                 zoom.setDuration(1000);
                 zoom.setStartOffset(500);
 
-                as.addAnimation(fadeIn);
-                as.addAnimation(zoom);
+                fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
+                fadeIn.setDuration(1000);
 
-                mEventPopupView.startAnimation(as);
-            }
-            else if (progress[0]==2){
+
                 Animation fadeOut = new AlphaAnimation(1, 0);
                 fadeOut.setInterpolator(new DecelerateInterpolator()); //add this
                 fadeOut.setDuration(1000);
-                animation.addAnimation(fadeOut);
-                mEventPopupView.startAnimation(animation);
+                fadeOut.setStartOffset(2000);
+
+
+                as.addAnimation(fadeIn);
+                as.addAnimation(zoom);
+                as.addAnimation(fadeOut);
+
+                mEventPopupView.startAnimation(as);
             }
             else if (progress[0]==3){
                 mEventPopupView.setVisibility(View.GONE);
