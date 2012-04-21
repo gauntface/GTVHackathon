@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class ArchiveVideo {
 
-    private double mAvgRating;
+    private float mAvgRating;
     private String mTitle;
     private String mDescription;
     private String mDate;
@@ -17,7 +17,7 @@ public class ArchiveVideo {
     public String mThumb;
 
     public ArchiveVideo() {
-        mAvgRating = 0.0;
+        mAvgRating = 0.0f;
         mTitle = new String();
         mDescription = new String();
         mDate = new String();
@@ -27,7 +27,7 @@ public class ArchiveVideo {
     }
     
     public void setAvgRating(double rating) {
-        mAvgRating = rating;
+        mAvgRating = (float) rating;
     }
     
     public double getAvgRating() {
@@ -98,6 +98,7 @@ public class ArchiveVideo {
         b.putString("description", getDescription());
         b.putString("thumb", mThumb.toString());
         b.putString("source", mVideoURL.toString());
+        b.putFloat("rating", mAvgRating);
         return b;
     }
 
