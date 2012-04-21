@@ -26,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.gtvhackathon.chuggr.controller.ArchiveVideoController;
+import com.gtvhackathon.chuggr.controller.ArchiveVideoController.ArchiveListener;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     
@@ -48,7 +49,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
         });
 
         mArchiveVideoController = ArchiveVideoController.getArchiveViewController();
-        mArchiveVideoController.downloadArchiveData(null);
+        mArchiveVideoController.downloadArchiveData(new ArchiveListener() {
+
+            @Override
+            public void onDownloadComplete() {
+                // Update the grid view adapter
+            }
+
+            @Override
+            public void onError() {
+                // On Error - Ooops
+            }
+            
+        });
     }
 
     @Override
