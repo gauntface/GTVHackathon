@@ -41,13 +41,14 @@ import android.widget.VideoView;
 
 public class VideoPlayerActivity extends Activity
         implements AudioManager.OnAudioFocusChangeListener, MediaPlayer.OnCompletionListener,
-        MediaPlayer.OnErrorListener, TimerProvider, TimerListener {
+        MediaPlayer.OnErrorListener, TimerListener {
     
     public static final String TAG = "VPActivity";
 
     public VideoView mVideoView = null;
     private LayoutParams mDefaultVideoViewSize;
 
+    private VideoTimerProvider mTimeProvider;
     private TimerRunnable mTimerRunnable;
     private ExecutorService mExecutor;
     
@@ -143,28 +144,23 @@ public class VideoPlayerActivity extends Activity
             }
         });
         
+        mTimeProvider = new VideoTimerProvider(mVideoView);
+        
         mExecutor = Executors.newFixedThreadPool(1);
-        mTimerRunnable = new TimerRunnable(this, this);
+        mTimerRunnable = new TimerRunnable(mTimeProvider, this);
         mExecutor.execute(mTimerRunnable);
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        mTimeProvider.setVideoView(null);
         mTimerRunnable.kill();
-    }
-    
-    @Override
-    public int getVideoPosition() {
-        if(mVideoView != null) {
-            return mVideoView.getCurrentPosition();
-        }
-        return -1;
     }
 
     @Override
     public void onEventTriggered() {
-        
+        Log.v(TAG, "onEventTriggered()");
     }
 
 }
