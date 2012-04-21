@@ -11,13 +11,19 @@
                  android:hardwareAccelerated="true"
             >
 
-        <!--Main Activity-->
-        <activity android:name=".MainActivity"
+
+        <!--Splash Activity-->
+        <activity android:name=".SplashActivity"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+
+        <!--Main Activity-->
+        <activity android:name=".MainActivity"
+                  android:label="@string/app_name">
         </activity>
 
         <!--Video Activity-->

@@ -3,4 +3,7 @@
     <string name="app_name">chuggr</string>
     <string name="play">Play</string>
     <string name="category">Caterogy</string>
+    <string name="disclaimer">We do not take responsiblity for your crazy-ass drinking antics. This application is provided for educational and research purposes only, as a result any injuries or deaths caused by excessive drinking are totally not our faults!</string>
+    <string name="chuggr">CHUGGR</string>
+    <string name="confirm">Confirm</string>
 </resources>
