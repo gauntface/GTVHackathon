@@ -1,5 +1,9 @@
 package com.gtvhackathon.chuggr.model;
 
+import android.os.Bundle;
+
+import java.util.ArrayList;
+
 public class ArchiveVideo {
 
     private double mAvgRating;
@@ -10,6 +14,8 @@ public class ArchiveVideo {
     private int mDownloads;
     private String mVideoURL;
 
+    public String mThumb;
+
     public ArchiveVideo() {
         mAvgRating = 0.0;
         mTitle = new String();
@@ -17,6 +23,7 @@ public class ArchiveVideo {
         mDate = new String();
         mIdentifier = null;
         mDownloads = -1;
+        mThumb = new String();
     }
     
     public void setAvgRating(double rating) {
@@ -74,4 +81,25 @@ public class ArchiveVideo {
     public void setVideoURL(String mVideoURL) {
         this.mVideoURL = mVideoURL;
     }
+
+    public String getThumb() {
+        return mThumb.toString();
+    }
+
+    public void setThumb(String mVideoURL) {
+        this.mThumb = mVideoURL;
+    }
+
+
+    public Bundle getAsBundle() {
+        Bundle b = new Bundle();
+        b.putString("title", getTitle());
+        b.putString("subtitle", "subtitle...");
+        b.putString("description", getDescription());
+        b.putString("thumb", mThumb.toString());
+        b.putString("source", mVideoURL.toString());
+        return b;
+    }
+
+
 }

@@ -4,26 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URI;
 import java.util.ArrayList;
 
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.gtvhackathon.chuggr.model.ArchiveVideo;
 
 import com.gtvhackathon.chuggr.controller.ArchiveVideoController;
 import com.gtvhackathon.chuggr.controller.ArchiveVideoController.ArchiveListener;
@@ -31,7 +22,8 @@ import com.gtvhackathon.chuggr.controller.ArchiveVideoController.ArchiveListener
 public class MainActivity extends Activity implements View.OnClickListener {
     
     private ArchiveVideoController mArchiveVideoController;
-    
+    private GridView gridView;
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -39,38 +31,59 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        GridView g = (GridView) findViewById(R.id.gridview);
-        g.setAdapter(new VideoAdapter(this));
-        g.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ((Button)findViewById(R.id.btnHorror)).setOnClickListener(this);
+        ((Button)findViewById(R.id.btnComedy)).setOnClickListener(this);
+
+        ArrayList<ArchiveVideo> videos = new ArrayList<ArchiveVideo>();
+
+        Uri uriVideo = Uri.parse("http://www.stealthcopter.com/video1.mp4");
+        //"android.resource://com.gtvhackathon.chuggr/raw/video1");
+        Uri uriThumb = Uri.parse("android.resource://com.gtvhackathon.chuggr/" + R.drawable.ic_launcher);
+
+        ArchiveVideo video = new ArchiveVideo();
+        video.setTitle("Sab");
+        video.setThumb("");
+        video.setVideoURL("http://archive.org/download/Black_Sabbath_US_trailer/Black_Sabbath_US_trailer.mp4");
+        video.setDescription("Video description....");
+
+
+        videos.add(video);
+
+        ArchiveVideo video2 = new ArchiveVideo();
+        video2.setTitle("Xmen");
+        video2.setThumb("");
+        video2.setVideoURL("http://www.videodetective.net/player.aspx?cmd=6&fmt=4&customerid=699923&videokbrate=80&publishedid=244133");
+        video2.setDescription("Video description....");
+
+        videos.add(video2);
+
+        gridView = (GridView) findViewById(R.id.gridview);
+        gridView.setAdapter(new VideoAdapter(this, videos));
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                playVideo((Video) adapterView.getItemAtPosition(i));
+                playVideo((ArchiveVideo) adapterView.getItemAtPosition(i));
             }
         });
 
-        mArchiveVideoController = ArchiveVideoController.getArchiveViewController();
-        mArchiveVideoController.downloadArchiveData(new ArchiveListener() {
-
-            @Override
-            public void onDownloadComplete() {
-                // Update the grid view adapter
-            }
-
-            @Override
-            public void onError() {
-                // On Error - Ooops
-            }
-            
-        });
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+            case R.id.btnHorror:
+                new DownloadFilmInfoAsyncTask().execute("Horror");
+                break;
+            case R.id.btnComedy:
+                new DownloadFilmInfoAsyncTask().execute("Comedy");
+                break;
         }
     }
 
-    private void playVideo(Video vid) {
+
+
+
+    private void playVideo(ArchiveVideo vid) {
         final Bundle b = vid.getAsBundle();
         final Intent i = new Intent("com.gtvhackathon.chuggr");
         i.putExtra("com.gtvhackathon.chuggr", b);
@@ -80,23 +93,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public class VideoAdapter extends BaseAdapter {
         private Context mContext;
-        ArrayList<Video> videos = new ArrayList<Video>();
+        ArrayList<ArchiveVideo> videos = new ArrayList<ArchiveVideo>();
 
-        public VideoAdapter(Context c) {
+        public VideoAdapter(Context c, ArrayList<ArchiveVideo> videos) {
             mContext = c;
 
-            Uri uriVideo = Uri.parse("http://www.stealthcopter.com/video1.mp4");
-            //"android.resource://com.gtvhackathon.chuggr/raw/video1");
-            Uri uriThumb = Uri.parse("android.resource://com.gtvhackathon.chuggr/" + R.drawable.ic_launcher);
-            videos.add( new Video(uriThumb, uriVideo, "Video Title", "Subtitle", "Description"));
-            videos.add( new Video(uriThumb, uriVideo, "Video Title", "Subtitle", "Description"));
-            videos.add( new Video(uriThumb, uriVideo, "Video Title", "Subtitle", "Description"));
-            uriVideo = Uri.parse("http://archive.org/download/Black_Sabbath_US_trailer/Black_Sabbath_US_trailer.mp4");
-
-            videos.add( new Video(uriThumb, uriVideo, "Archive.org vid", "Subtitle", "Description"));
-            uriVideo = Uri.parse("http://www.videodetective.net/player.aspx?cmd=6&fmt=4&customerid=699923&videokbrate=80&publishedid=244133");
-
-            videos.add( new Video(uriThumb, uriVideo, "IA VIDEO", "Subtitle", "Description"));
+                for (ArchiveVideo video : videos){
+                    this.videos.add(video);
+                }
         }
 
         @Override
@@ -126,10 +130,73 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 layout = (LinearLayout) convertView;
             }
 
-            ((TextView)layout.findViewById(R.id.videoTitle)).setText(videos.get(position).mTitle);
+            ((TextView)layout.findViewById(R.id.videoTitle)).setText(videos.get(position).getTitle());
 
             return layout;
         }
 
     }
+
+
+
+
+
+
+    private class DownloadFilmInfoAsyncTask extends AsyncTask<String, Integer, Integer> {
+//        private ArrayList<ArchiveVideo> videos;
+
+        protected Integer doInBackground(String... strings) {
+            // Chuck spinner on there...
+
+            mArchiveVideoController = ArchiveVideoController.getArchiveViewController();
+            mArchiveVideoController.downloadArchiveData(new ArchiveListener() {
+
+                @Override
+                public void onDownloadComplete() {
+                    publishProgress(1);
+                }
+
+                @Override
+                public void onError() {
+                    // On Error - Ooops
+
+                    // Remove spinner...
+                }
+
+            }, strings[0]);
+
+
+            return null;
+        }
+
+        protected void onPreExecute(){
+            // Remove current
+            gridView.setAdapter(null);
+            ((ProgressBar)findViewById(R.id.progressMain)).setVisibility(View.VISIBLE);
+               // Add spinner
+        }
+
+        protected void onPostExecute(Long result) {
+            // Remove spinner...
+
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+            ((ProgressBar)findViewById(R.id.progressMain)).setVisibility(View.GONE);
+
+            ArrayList<ArchiveVideo> temp = mArchiveVideoController.getVideos();
+
+            if (temp!=null){
+                gridView.setAdapter(new VideoAdapter(MainActivity.this, mArchiveVideoController.getVideos()));
+            }
+            else Log.e(MainActivity.this.getClass().toString(), "NULL");
+
+        }
+
+
+    }
+
+
+
+
 }

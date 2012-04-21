@@ -23,16 +23,19 @@ import android.util.Log;
 public class ArchiveDownloadRunnable implements Runnable {
 
     private ArchiveDownloadRunnableListener mListener;
-    
-    public ArchiveDownloadRunnable(ArchiveDownloadRunnableListener listener) {
+    private String mQuery;
+
+    public ArchiveDownloadRunnable(ArchiveDownloadRunnableListener listener, String query) {
         mListener = listener;
+        mQuery = query;
     }
 
     @Override
     public void run() {
-        List<ArchiveVideo> videoList = new ArrayList<ArchiveVideo>();
+
+        ArrayList<ArchiveVideo> videoList = new ArrayList<ArchiveVideo>();
         
-        String url = "http://archive.org/advancedsearch.php?q=mediatype%3Amovies+AND+subject%3A%22Horror%22&fl%5B%5D=avg_rating&fl%5B%5D=call_number&fl%5B%5D=collection&fl%5B%5D=contributor&fl%5B%5D=coverage&fl%5B%5D=creator&fl%5B%5D=date&fl%5B%5D=description&fl%5B%5D=downloads&fl%5B%5D=foldoutcount&fl%5B%5D=format&fl%5B%5D=headerImage&fl%5B%5D=identifier&fl%5B%5D=imagecount&fl%5B%5D=language&fl%5B%5D=licenseurl&fl%5B%5D=mediatype&fl%5B%5D=month&fl%5B%5D=num_reviews&fl%5B%5D=oai_updatedate&fl%5B%5D=publicdate&fl%5B%5D=publisher&fl%5B%5D=rights&fl%5B%5D=scanningcentre&fl%5B%5D=source&fl%5B%5D=subject&fl%5B%5D=title&fl%5B%5D=type&fl%5B%5D=volume&fl%5B%5D=week&fl%5B%5D=year&sort%5B%5D=&sort%5B%5D=&sort%5B%5D=&rows=50&page=1&output=json&callback=&save=yes#raw";
+        String url = "http://archive.org/advancedsearch.php?q=mediatype%3Amovies+AND+subject%3A%22"+mQuery+"%22&fl%5B%5D=avg_rating&fl%5B%5D=call_number&fl%5B%5D=collection&fl%5B%5D=contributor&fl%5B%5D=coverage&fl%5B%5D=creator&fl%5B%5D=date&fl%5B%5D=description&fl%5B%5D=downloads&fl%5B%5D=foldoutcount&fl%5B%5D=format&fl%5B%5D=headerImage&fl%5B%5D=identifier&fl%5B%5D=imagecount&fl%5B%5D=language&fl%5B%5D=licenseurl&fl%5B%5D=mediatype&fl%5B%5D=month&fl%5B%5D=num_reviews&fl%5B%5D=oai_updatedate&fl%5B%5D=publicdate&fl%5B%5D=publisher&fl%5B%5D=rights&fl%5B%5D=scanningcentre&fl%5B%5D=source&fl%5B%5D=subject&fl%5B%5D=title&fl%5B%5D=type&fl%5B%5D=volume&fl%5B%5D=week&fl%5B%5D=year&sort%5B%5D=&sort%5B%5D=&sort%5B%5D=&rows=10&page=1&output=json&callback=&save=yes#raw";
         
         //initialize
         InputStream inputStream = null;
@@ -108,6 +111,7 @@ public class ArchiveDownloadRunnable implements Runnable {
         }
         
         for(ArchiveVideo video : videoList) {
+            Log.e(this.getClass().toString(), "GETTING MOAR"+video.getIdentifier());
             getVideoThumbAndUrl(video);
         }
         
@@ -116,7 +120,11 @@ public class ArchiveDownloadRunnable implements Runnable {
 
     public void getVideoThumbAndUrl(ArchiveVideo video) {
         //mIdentifier
-        String url = "http://ia600500.us.archive.org/1/items/"+video.getIdentifier()+"/";
+
+
+        String url = "http://archive.org/download/"+video.getIdentifier()+"/"+video.getIdentifier()+"_files.xml";
+        Log.e(C.TAG, "Getting XML: " + url);
+
         //initialize
         InputStream inputStream = null;
 
@@ -146,17 +154,33 @@ public class ArchiveDownloadRunnable implements Runnable {
             Log.e(C.TAG, "Error converting result "+e.toString());
         }
 
-        // Use response string
-        if (responseString.contains(video.getIdentifier()+".avi")){
-              video.setVideoURL("ia600500.us.archive.org/1/items/"+video.getIdentifier()+"/"+video.getIdentifier()+".avi");
+        // Inspect Response string
+        // Split by "<file name=\"
+
+        String tmp[]  = responseString.split("<file name=\"");
+        for (String s:tmp){
+            if (s.contains(".mp4")){
+                String tmp2[] = responseString.split("\"");
+                Log.e(C.TAG, " "+tmp2[0]+" "+tmp2[1]);
+            }
         }
+
+        // http://archive.org/download/LastMinuteCreativeSolutions_12/Random.mp4
+
+        // Use response string
+//        if (responseString.contains(video.getIdentifier() + ".mp4")){
+//              //http://archive.org/download/LastMinuteCreativeSolutions_12/LastMinuteCreativeSolutions_12_files.xml
+//              video.setVideoURL("ia600500.us.archive.org/1/items/"+video.getIdentifier()+"/"+video.getIdentifier()+".avi");
+//            Log.e(C.TAG, "x"+video.getVideoURL());
+//            video.setThumb("");
+//        }
 
 
     }
     
     public interface ArchiveDownloadRunnableListener {
         
-        public void onDataDownloaded(List<ArchiveVideo> videos);
+        public void onDataDownloaded(ArrayList<ArchiveVideo> videos);
         
     }
     

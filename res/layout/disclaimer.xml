@@ -4,6 +4,7 @@
     android:layout_width="400dip"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:padding="10dip"
     >
     <TextView android:text="@string/chuggr"
               android:textSize="30pt"

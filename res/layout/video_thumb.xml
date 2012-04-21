@@ -11,17 +11,17 @@
         android:src="@drawable/default_thumb"
         />
     <TextView android:text="VideoName"
-              android:textSize="14pt"
+              android:textSize="10pt"
               android:layout_width="match_parent" android:layout_height="wrap_content"
               android:id="@+id/videoTitle" android:textColor="@color/Title"
               android:gravity="center_horizontal"
               android:textStyle="bold" />
 
-    <TextView android:text="TextView" android:layout_width="match_parent"
-              android:gravity="center_horizontal"
-              android:textSize="12pt"
-              android:layout_height="wrap_content" android:id="@+id/videoSubTitle"
-              android:textColor="@color/subTitle" />
+    <!--<TextView android:text="TextView" android:layout_width="match_parent"-->
+              <!--android:gravity="center_horizontal"-->
+              <!--android:textSize="12pt"-->
+              <!--android:layout_height="wrap_content" android:id="@+id/videoSubTitle"-->
+              <!--android:textColor="@color/subTitle" />-->
 
 
 </LinearLayout>

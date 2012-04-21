@@ -10,6 +10,7 @@
       android:orientation="vertical"
       android:layout_width="200dip"
       android:layout_height="fill_parent"
+      android:padding="10dip"
       android:background="@color/lightBackground"
             >
         <LinearLayout
@@ -18,14 +19,23 @@
                 android:layout_width="200dip"
                 android:layout_height="fill_parent"
                 >
+                    <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="12pt"
+                            android:textColor="#000"
+                            android:textStyle="bold"
+                            android:text="@string/categories"
+                            android:paddingBottom="10dip"
+                            />
                     <Button
-                    android:id="@+id/btnCat1"
+                    android:id="@+id/btnComedy"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Comedy"
                     />
             <Button
-                    android:id="@+id/btnCat2"
+                    android:id="@+id/btnHorror"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Horror"
@@ -41,21 +51,32 @@
 
     <LinearLayout
             android:id="@+id/contentView"
+            android:padding="15dip"
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             >
+        <ProgressBar
+                android:id="@+id/progressMain"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dip"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                />
         <GridView
                   android:id="@+id/gridview"
                   android:layout_width="fill_parent"
                   android:layout_height="fill_parent"
-                  android:columnWidth="140dp"
+                  android:columnWidth="180dp"
                   android:numColumns="auto_fit"
                   android:verticalSpacing="10dp"
                   android:horizontalSpacing="10dp"
                   android:stretchMode="columnWidth"
                   android:gravity="center"
                 />
+
     </LinearLayout>
 
 
