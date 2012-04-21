@@ -94,7 +94,7 @@ public class ArchiveDownloadRunnable implements Runnable {
                 }
                 
                 if(docObject.has("downloads")) {
-                    video.setDownlads(docObject.getInt("downloads"));
+                    video.setDownloads(docObject.getInt("downloads"));
                 }
                 
                 if(docObject.has("avg_rating")) {
@@ -115,7 +115,43 @@ public class ArchiveDownloadRunnable implements Runnable {
     }
 
     public void getVideoThumbAndUrl(ArchiveVideo video) {
-        
+        //mIdentifier
+        String url = "http://ia600500.us.archive.org/1/items/"+video.getIdentifier()+"/";
+        //initialize
+        InputStream inputStream = null;
+
+        //http post
+        try{
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost(url);
+            HttpResponse response = httpclient.execute(httppost);
+            HttpEntity entity = response.getEntity();
+            inputStream = entity.getContent();
+        } catch(Exception e) {
+            Log.e(C.TAG, "Error in http connection " + e.toString());
+        }
+
+        String responseString = "";
+        //convert response to string
+        try{
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"),8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            inputStream.close();
+            responseString = sb.toString();
+        }catch(Exception e){
+            Log.e(C.TAG, "Error converting result "+e.toString());
+        }
+
+        // Use response string
+        if (responseString.contains(video.getIdentifier()+".avi")){
+              video.setVideoURL("ia600500.us.archive.org/1/items/"+video.getIdentifier()+"/"+video.getIdentifier()+".avi");
+        }
+
+
     }
     
     public interface ArchiveDownloadRunnableListener {

@@ -8,7 +8,8 @@ public class ArchiveVideo {
     private String mDate;
     private String mIdentifier;
     private int mDownloads;
-    
+    private String mVideoURL;
+
     public ArchiveVideo() {
         mAvgRating = 0.0;
         mTitle = new String();
@@ -58,11 +59,19 @@ public class ArchiveVideo {
         return mIdentifier;
     }
     
-    public void setDownlads(int downloads) {
+    public void setDownloads(int downloads) {
         mDownloads = downloads;
     }
     
     public int getDownloads() {
         return mDownloads;
+    }
+
+    public String getVideoURL() {
+        return mVideoURL;
+    }
+
+    public void setVideoURL(String mVideoURL) {
+        this.mVideoURL = mVideoURL;
     }
 }
