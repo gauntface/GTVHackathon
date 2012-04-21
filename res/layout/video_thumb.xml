@@ -11,6 +11,7 @@
         android:src="@drawable/default_thumb2"
         android:layout_gravity="center"
         android:paddingTop="15dip"
+        android:paddingBottom="5dip"
         />
     <com.gtvhackathon.chuggr.EllipsizingTextView android:text="VideoName"
               android:textSize="8pt"
