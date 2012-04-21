@@ -1,5 +1,6 @@
 package com.gtvhackathon.chuggr;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.VideoView;
@@ -11,9 +12,10 @@ public class VideoTimerProvider implements TimerProvider {
     private VideoView mVideoView;
     private int[] mEventTimes;
     
-    public VideoTimerProvider(VideoView videoView) {
+    public VideoTimerProvider(VideoView videoView, Context context) {
         mVideoView = videoView;
-        mEventTimes = new int[]{1,2};
+        XMLParser xmlParser = new XMLParser();
+        mEventTimes = xmlParser.parse(XMLParser.loadFile("test.xml", context));
     }
 
     @Override

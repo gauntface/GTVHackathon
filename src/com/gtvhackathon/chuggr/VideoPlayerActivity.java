@@ -154,7 +154,7 @@ public class VideoPlayerActivity extends Activity
         
         mEventPopupView = findViewById(R.id.event_popup);
         
-        mTimeProvider = new VideoTimerProvider(mVideoView);
+        mTimeProvider = new VideoTimerProvider(mVideoView, this);
         
         mExecutor = Executors.newFixedThreadPool(1);
         mTimerRunnable = new TimerRunnable(mTimeProvider, this);
