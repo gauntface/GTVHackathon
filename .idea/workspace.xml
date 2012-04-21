@@ -14,12 +14,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d70e722a-0c69-4ce6-9ce7-ab00d64c8ad5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/video_thumb.xml" afterPath="$PROJECT_DIR$/res/layout/video_thumb.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoPlayerActivity.java" afterPath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoPlayerActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoTimerProvider.java" afterPath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoTimerProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/controller/ArchiveVideoController.java" afterPath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/controller/ArchiveVideoController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/runnable/ArchiveDownloadRunnable.java" afterPath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/runnable/ArchiveDownloadRunnable.java" />
     </list>
     <ignored path="GTVHackathon.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,11 +72,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="video_thumb.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="video_thumb.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/video_thumb.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="33" selection-start="412" selection-end="412" vertical-scroll-proportion="0.39263803">
+            <state line="10" column="33" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VideoPlayerActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoPlayerActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="159" column="24" selection-start="5991" selection-end="5991" vertical-scroll-proportion="0.5582822">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#6028#6198#0" expanded="true" />
+                <element signature="e#6187#6188#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -99,11 +107,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/controller/ArchiveVideoController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="32" column="12" selection-start="1032" selection-end="1041" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#1082#1096#0" expanded="true" />
-                <element signature="e#1411#1678#0" expanded="true" />
-                <element signature="e#1663#1664#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -129,7 +133,7 @@
       <file leaf-file-name="ArchiveDownloadRunnable.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/runnable/ArchiveDownloadRunnable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="669" selection-start="2181" selection-end="2181" vertical-scroll-proportion="-4.5625">
+            <state line="41" column="669" selection-start="2181" selection-end="2181" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -168,12 +172,12 @@
         <option value="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/model/ArchiveVideo.java" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/res/layout/details.xml" />
-        <option value="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoPlayerActivity.java" />
         <option value="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/controller/ArchiveVideoController.java" />
         <option value="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoTimerProvider.java" />
         <option value="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/runnable/ArchiveDownloadRunnable.java" />
         <option value="$PROJECT_DIR$/res/layout/video_thumb.xml" />
+        <option value="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoPlayerActivity.java" />
       </list>
     </option>
   </component>
@@ -373,8 +377,8 @@
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="googleTV" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -430,6 +434,24 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -456,24 +478,6 @@
       <envs />
       <properties />
       <listeners />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -605,7 +609,7 @@
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16006097" sideWeight="0.66780823" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16006097" sideWeight="0.66780823" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -621,7 +625,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27286586" sideWeight="0.66780823" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3321918" sideWeight="0.49085367" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3321918" sideWeight="0.49085367" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -695,9 +699,7 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/../../../sdk/platforms/android-14/android.jar!/java/util/concurrent/ExecutorService.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="17" selection-start="162" selection-end="162" vertical-scroll-proportion="0.14349777">
-          <folding />
-        </state>
+        <state line="5" column="17" selection-start="162" selection-end="162" vertical-scroll-proportion="0.14349777" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/TimerRunnable.java">
@@ -721,25 +723,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="33" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/details.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="56" selection-start="2376" selection-end="2376" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../../sdk/platforms/android-14/android.jar!/android/os/AsyncTask.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="25" selection-start="1837" selection-end="1837" vertical-scroll-proportion="0.33231708">
-          <folding />
-        </state>
+        <state line="39" column="25" selection-start="1837" selection-end="1837" vertical-scroll-proportion="0.33231708" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/XMLParser.java">
@@ -749,18 +735,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoPlayerActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/model/ArchiveVideo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="81" selection-start="4192" selection-end="4192" vertical-scroll-proportion="-1.9631902">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="29" column="47" selection-start="689" selection-end="689" vertical-scroll-proportion="0.04719764">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoTimerProvider.java">
+    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="31" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0">
+        <state line="17" column="33" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -768,17 +752,13 @@
     <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/controller/ArchiveVideoController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="12" selection-start="1032" selection-end="1041" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#1082#1096#0" expanded="true" />
-            <element signature="e#1411#1678#0" expanded="true" />
-            <element signature="e#1663#1664#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/model/ArchiveVideo.java">
+    <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoTimerProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="47" selection-start="689" selection-end="689" vertical-scroll-proportion="0.04719764">
+        <state line="15" column="31" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -792,15 +772,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/runnable/ArchiveDownloadRunnable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="669" selection-start="2181" selection-end="2181" vertical-scroll-proportion="-4.5625">
+        <state line="41" column="669" selection-start="2181" selection-end="2181" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/details.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="56" selection-start="2376" selection-end="2376" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/video_thumb.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="33" selection-start="412" selection-end="412" vertical-scroll-proportion="0.39263803">
+        <state line="10" column="33" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoPlayerActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="159" column="24" selection-start="5991" selection-end="5991" vertical-scroll-proportion="0.5582822">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6028#6198#0" expanded="true" />
+            <element signature="e#6187#6188#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

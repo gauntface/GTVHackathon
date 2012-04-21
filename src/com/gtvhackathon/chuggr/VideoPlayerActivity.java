@@ -18,6 +18,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import android.os.Handler;
 import android.view.animation.*;
 import android.widget.*;
 import com.gtvhackathon.chuggr.TimerRunnable.TimerListener;
@@ -154,6 +155,17 @@ public class VideoPlayerActivity extends Activity
         mExecutor = Executors.newFixedThreadPool(1);
         mTimerRunnable = new TimerRunnable(mTimeProvider, this);
         mExecutor.execute(mTimerRunnable);
+
+        Handler handler;
+        handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                findViewById(R.id.controlsLayout).setVisibility(View.GONE);
+            }
+        };
+        handler.postDelayed(runnable, 5500);
+
     }
 
     @Override
