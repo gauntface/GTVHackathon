@@ -1,5 +1,7 @@
 package com.gtvhackathon.chuggr;
 
+import android.os.Handler;
+import android.os.Message;
 import android.widget.VideoView;
 
 import com.gtvhackathon.chuggr.TimerRunnable.TimerProvider;

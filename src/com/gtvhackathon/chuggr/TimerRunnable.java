@@ -1,20 +1,36 @@
 package com.gtvhackathon.chuggr;
 
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 public class TimerRunnable implements Runnable {
 
     private final static String TAG = "TimerRunnable";
     private final static int MIN_THREAD_SLEEP_TIME = 50;
+    private final static int MSG_ON_EVENT_TRIGGERED = 0;
     
     private boolean mIsRunning;
     private TimerProvider mProvider;
     private TimerListener mListener;
+    private Handler mHandler;
     
     public TimerRunnable(TimerProvider provider, TimerListener listener) {
         mIsRunning = false;
         mProvider = provider;
         mListener = listener;
+        
+        mHandler = new Handler() {
+            
+            public void handleMessage(Message msg) {
+                switch(msg.what) {
+                case MSG_ON_EVENT_TRIGGERED:
+                    mListener.onEventTriggered(msg.arg1);
+                    break;
+                }
+            }
+            
+        };
     }
 
     @Override
@@ -30,13 +46,14 @@ public class TimerRunnable implements Runnable {
             currentEventMilliseconds = mProvider.getEventTimeSeconds(currentEventIndex) * 1000;
             millisecondsPosition = mProvider.getCurrentVideoPosition();
             if(millisecondsPosition != -1) {
-                Log.v(TAG, "currentEventMilliseconds = "+currentEventMilliseconds);
-                Log.v(TAG, "millisecondsPosition = "+millisecondsPosition);
                 if(millisecondsPosition< currentEventMilliseconds) {
                     // We need to sleep for a while
                     waitFor(millisecondsPosition - currentEventMilliseconds);
                 } else {
-                    mListener.onEventTriggered();
+                    Message msg = Message.obtain(mHandler, MSG_ON_EVENT_TRIGGERED);
+                    msg.arg1 = currentEventIndex;
+                    mHandler.sendMessage(msg);
+                    
                     currentEventIndex++;
                 }
                 
@@ -72,7 +89,7 @@ public class TimerRunnable implements Runnable {
     
     public interface TimerListener {
         
-        public void onEventTriggered();
+        public void onEventTriggered(int eventIndex);
         
     }
     

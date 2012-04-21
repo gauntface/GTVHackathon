@@ -51,4 +51,6 @@
             android:id="@+id/videoDescription"
             style="@android:style/TextAppearance.Small" android:gravity="left" />
     </LinearLayout>
+    
+    <include android:id="@+id/event_popup" layout="@layout/event_popup" />
 </FrameLayout>

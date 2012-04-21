@@ -20,6 +20,7 @@ import java.util.concurrent.Executors;
 
 import com.gtvhackathon.chuggr.TimerRunnable.TimerListener;
 import com.gtvhackathon.chuggr.TimerRunnable.TimerProvider;
+import com.gtvhackathon.chuggr.windows.EventPopupWindow;
 
 import android.app.Activity;
 import android.content.Context;
@@ -28,10 +29,15 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
 import android.widget.MediaController;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -51,19 +57,21 @@ public class VideoPlayerActivity extends Activity
     private VideoTimerProvider mTimeProvider;
     private TimerRunnable mTimerRunnable;
     private ExecutorService mExecutor;
+    //private EventPopupWindow mEventPopup;
+    private View mEventPopupView;
     
     // Handle AudioFocus issues
     @Override
     public void onAudioFocusChange(int focusChange) {
         switch(focusChange) {
             case AudioManager.AUDIOFOCUS_GAIN:
-                Log.i(TAG, "AF Gain");
+                Log.i(C.TAG, "AF Gain");
                 if (mVideoView != null)
                     mVideoView.resume();
                 break;
 
             case AudioManager.AUDIOFOCUS_LOSS:
-                Log.i(TAG, "AF Loss");
+                Log.i(C.TAG, "AF Loss");
                 if (mVideoView != null)
                     mVideoView.stopPlayback();
                 mVideoView = null;
@@ -72,7 +80,7 @@ public class VideoPlayerActivity extends Activity
 
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
-                Log.i(TAG, "AF Transient");
+                Log.i(C.TAG, "AF Transient");
                 if (mVideoView != null)
                     mVideoView.pause();
                 break;
@@ -81,14 +89,14 @@ public class VideoPlayerActivity extends Activity
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-        Log.i(TAG, "done.");
+        Log.i(C.TAG, "done.");
         mVideoView = null;
         this.finish();
     }
 
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
-        Log.e(TAG, "IO Error e=" + what + " x=" + extra);
+        Log.e(C.TAG, "IO Error e=" + what + " x=" + extra);
         return false; // Will call onCompletion
     }
 
@@ -101,7 +109,7 @@ public class VideoPlayerActivity extends Activity
         int result = am.requestAudioFocus(this, AudioManager.STREAM_MUSIC,
                 AudioManager.AUDIOFOCUS_GAIN);
         if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-            Log.e(TAG, "Can't get AudioFocus " + result);
+            Log.e(C.TAG, "Can't get AudioFocus " + result);
             this.finish(); // Just give up.
         }
 
@@ -144,6 +152,8 @@ public class VideoPlayerActivity extends Activity
             }
         });
         
+        mEventPopupView = findViewById(R.id.event_popup);
+        
         mTimeProvider = new VideoTimerProvider(mVideoView);
         
         mExecutor = Executors.newFixedThreadPool(1);
@@ -159,8 +169,20 @@ public class VideoPlayerActivity extends Activity
     }
 
     @Override
-    public void onEventTriggered() {
-        Log.v(TAG, "onEventTriggered()");
+    public void onEventTriggered(int eventIndex) {
+        Log.v(C.TAG, "onEventTriggered() for event = "+eventIndex);
+        //if(mEventPopup != null) {
+            //mEventPopup.dismiss();
+        //    return;
+        //}
+        
+        //LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //View popupLayout = inflater.inflate(R.layout.event_popup, null, false);
+        
+        //mEventPopup = new EventPopupWindow(popupLayout, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, false);
+        //mEventPopup.setAnimationStyle(R.style.EventPopupAnimation);
+        //mEventPopup.showAtLocation(this.mVideoView, Gravity.CENTER, 0, 0);
+        mEventPopupView.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.event_popup_anim_in));
     }
 
 }
