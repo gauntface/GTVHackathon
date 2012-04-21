@@ -182,12 +182,14 @@ public class VideoPlayerActivity extends Activity
         Animation fadeIn = new AlphaAnimation(0, 1);
         fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
         fadeIn.setDuration(1000);
+        fadeIn.setRepeatCount(0);
 
         Animation fadeOut = new AlphaAnimation(1, 0);
         fadeOut.setInterpolator(new AccelerateInterpolator()); //and this
         fadeOut.setStartOffset(1000);
         fadeOut.setDuration(1000);
-
+        fadeOut.setRepeatCount(0);
+        
         AnimationSet animation = new AnimationSet(false); //change to false
         animation.addAnimation(fadeIn);
         animation.addAnimation(fadeOut);
