@@ -52,7 +52,8 @@ public class VideoPlayerActivity extends Activity
     private ExecutorService mExecutor;
     //private EventPopupWindow mEventPopup;
     private View mEventPopupView;
-    
+    private GTVServer gtvserver;
+
     // Handle AudioFocus issues
     @Override
     public void onAudioFocusChange(int focusChange) {
@@ -96,6 +97,10 @@ public class VideoPlayerActivity extends Activity
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        this.gtvserver = new GTVServer(this);
+
+        this.gtvserver.sendEvent("Connected Thanks");
 
         // Request Audio Focus
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -198,6 +203,10 @@ public class VideoPlayerActivity extends Activity
     public void onEventTriggered(int eventIndex, String reason) {
         Log.v(C.TAG, "onEventTriggered() for event = "+eventIndex);
         eventAnimateBeerTrigger(eventIndex, reason);
+        if (this.gtvserver!=null){
+            Log.e("xx","Sending "+reason);
+            this.gtvserver.sendEvent(reason);
+        }
     }
 
     public void eventAnimateBeerTrigger(int eventIndex, String text){
