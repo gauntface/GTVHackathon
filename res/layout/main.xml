@@ -34,26 +34,30 @@
             android:id="@+id/btnComedy"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000"
+            android:textColor="#fff"
+            android:textSize="10pt"
             android:text="Comedy"
             />
             <Button
             android:id="@+id/btnDrama"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000"
+            android:textColor="#fff"
+            android:textSize="10pt"
             android:text="Drama"
             />
             <Button
             android:id="@+id/btnHorror"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000"
+            android:textColor="#fff"
+            android:textSize="10pt"
             android:text="Horror"
             />
             <Button
             android:id="@+id/btnSciFi"
-            android:textColor="#000"
+            android:textSize="10pt"
+            android:textColor="#fff"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Sci-Fi"

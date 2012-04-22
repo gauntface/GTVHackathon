@@ -12,7 +12,7 @@
         android:layout_width="500dip"
         android:layout_centerInParent="true"
         android:layout_height="500dip"
-        android:src="@drawable/beer" />
+        android:src="@drawable/beer75" />
     <TextView
             android:gravity="center"
             android:textColor="#000"

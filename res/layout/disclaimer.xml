@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="400dip"
+    android:layout_width="600dip"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:padding="10dip"
@@ -12,14 +12,25 @@
               android:id="@+id/videoTitle" android:textColor="@color/lightBackground"
               android:gravity="center_horizontal"
               android:textStyle="bold|italic" />
+    <View
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
     <TextView android:text="@string/disclaimer"
-              android:textSize="10pt"
+              android:background="@drawable/text_background"
+              android:padding="10dip"
+              android:textSize="12pt"
               android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:id="@+id/videoTitle" android:textColor="@color/Title"
+              android:id="@+id/videoTitle" android:textColor="#000"
               android:gravity="center_horizontal" android:paddingBottom="10dip"
               android:textStyle="bold" />
+    <View
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
     <Button
             android:id="@+id/btnConfirm"
+            android:textSize="10pt"
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:text="@string/confirm" />
 </LinearLayout>

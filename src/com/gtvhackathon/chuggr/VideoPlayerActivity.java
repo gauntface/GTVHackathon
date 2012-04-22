@@ -237,7 +237,7 @@ public class VideoPlayerActivity extends Activity
                 AnimationSet as = new AnimationSet(false);
 
                 Animation fadeIn = new AlphaAnimation(0, 1);
-                Animation zoom = new ScaleAnimation(0.5f,1.0f,0.5f,1.0f,250f,250f);
+                Animation zoom = new ScaleAnimation(0.5f,1.0f,0.5f,1.0f,350f,250f);
                 zoom.setInterpolator(new DecelerateInterpolator());
                 zoom.setDuration(1000);
                 zoom.setStartOffset(500);
