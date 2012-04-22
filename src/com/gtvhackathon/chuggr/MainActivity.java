@@ -1,6 +1,7 @@
 package com.gtvhackathon.chuggr;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 
@@ -17,9 +18,11 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.*;
 import com.gtvhackathon.chuggr.model.ArchiveVideo;
 
@@ -35,6 +38,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private ArchiveVideoController mArchiveVideoController;
     private GridView gridView;
+    private TextView textTitleBar;
 
     /** Called when the activity is first created. */
     @Override
@@ -47,6 +51,40 @@ public class MainActivity extends Activity implements View.OnClickListener {
         ((Button)findViewById(R.id.btnComedy)).setOnClickListener(this);
         ((Button)findViewById(R.id.btnSciFi)).setOnClickListener(this);
         ((Button)findViewById(R.id.btnDrama)).setOnClickListener(this);
+        ((Button)findViewById(R.id.btnAbout)).setOnClickListener(this);
+        ((ImageView)findViewById(R.id.btnSearch)).setOnClickListener(this);
+
+        textTitleBar = (TextView) findViewById(R.id.textTitleBar);
+        
+        EditText editText = (EditText) findViewById(R.id.editSearch);
+        editText.setOnKeyListener(new View.OnKeyListener() {
+
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (keyCode) {
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            performSearch();
+                            return true;
+                        default:
+                            return false;
+                    }
+                }
+                return true;
+            }
+
+        });
+
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    performSearch();
+                    return true;
+                }
+                return false;
+            }
+        });
 
         gridView = (GridView) findViewById(R.id.gridview);
 
@@ -68,20 +106,50 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
+    private void performSearch() {
+        String search = ((EditText)findViewById(R.id.editSearch)).getText().toString();
+        textTitleBar.setText("Search Results:");
+        new DownloadFilmInfoAsyncTask().execute("AND+title%3A%22"+search);
+    }
+
     @Override
     public void onClick(View view) {
+        
         switch (view.getId()){
             case R.id.btnHorror:
-                new DownloadFilmInfoAsyncTask().execute("Horror");
+                textTitleBar.setText("Horror");
+                new DownloadFilmInfoAsyncTask().execute("AND+subject%3A%22Horror");
                 break;
             case R.id.btnComedy:
-                new DownloadFilmInfoAsyncTask().execute("Comedy");
+                textTitleBar.setText("Comedy");
+                new DownloadFilmInfoAsyncTask().execute("AND+subject%3A%22Comedy");
                 break;
             case R.id.btnSciFi:
-                new DownloadFilmInfoAsyncTask().execute("Sci-Fi");
+                textTitleBar.setText("Sci-Fi");
+                new DownloadFilmInfoAsyncTask().execute("AND+subject%3A%22Sci-Fi");
                 break;
             case R.id.btnDrama:
-                new DownloadFilmInfoAsyncTask().execute("Drama");
+                textTitleBar.setText("Drama");
+                new DownloadFilmInfoAsyncTask().execute("AND+subject%3A%22Drama");
+                break;
+            case R.id.btnAbout:
+                final Dialog dialog = new Dialog(MainActivity.this);
+                dialog.setContentView(R.layout.disclaimer);
+                dialog.setTitle("Terms and Conditions");
+                dialog.setCancelable(false);
+
+                Button confirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                confirm.setText(getString(R.string.close));
+                confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+                break;
+            case R.id.btnSearch:
+                performSearch();
                 break;
         }
     }

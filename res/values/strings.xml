@@ -6,7 +6,9 @@
     <string name="disclaimer">We do not take responsiblity for your crazy-ass drinking antics. This application is provided for educational and research purposes only, as a result any injuries or deaths caused by excessive drinking are totally not our faults!</string>
     <string name="chuggr">CHUGGR</string>
     <string name="confirm">Confirm</string>
-    <string name="categories">CATEGORIES</string>
+    <string name="categories">Categories</string>
     <string name="welcome">Welcome to Chuggr, please select a category on the left to begin.</string>
     <string name="drinkaware">http://www.drinkaware.com</string>
+    <string name="hello">Welcome</string>
+    <string name="close">Close</string>
 </resources>

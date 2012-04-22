@@ -21,10 +21,11 @@
                     <TextView
                             android:background="#000"
                             android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="60dip"
                             android:textSize="10pt"
                             android:textColor="#fff"
                             android:padding="10dip"
+                            android:gravity="bottom"
                             android:textStyle="bold"
                             android:paddingLeft="7dip"
                             android:text="@string/categories"
@@ -78,13 +79,78 @@
         </LinearLayout>
      </ScrollView>
 
+    <View
+            android:layout_width="1dip"
+            android:layout_height="wrap_content"
+            android:background="#fff"  />
+
     <LinearLayout
             android:id="@+id/contentView"
-            android:padding="15dip"
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             >
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dip"
+                    android:layout_gravity="bottom"
+                    android:background="#000"
+                    android:orientation="horizontal"
+                    android:gravity="bottom">
+                <TextView
+                        android:id="@+id/textTitleBar"
+                        android:background="#000"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:textSize="10pt"
+                        android:paddingBottom="10dip"
+                        android:textColor="#fff"
+                        android:gravity="bottom"
+                        android:textStyle="bold"
+                        android:paddingLeft="7dip"
+                        android:text="@string/hello"
+                        />
+                <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dip"
+                        android:layout_marginBottom="10dip"
+                        android:layout_marginRight="10dip"
+                        android:background="@drawable/search_draw"
+                >
+                    <EditText
+                            android:id="@+id/editSearch"
+                            android:lines="1"
+                            android:hint="Search"
+                            android:singleLine="true"
+                            android:layout_width="170dip"
+                            android:layout_height="match_parent"
+                            android:imeOptions="actionSearch"
+                        />
+
+                    <ImageView
+                            android:id="@+id/btnSearch"
+                            android:background="@drawable/search_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitCenter"
+                            />
+                </LinearLayout>
+                <Button
+                        android:id="@+id/btnAbout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/settings_btn"
+                        />
+
+
+            </LinearLayout>
+
                 <ProgressBar
                 android:id="@+id/progressMain"
                 style="?android:attr/progressBarStyle"
