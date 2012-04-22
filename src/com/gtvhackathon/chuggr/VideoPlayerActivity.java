@@ -112,7 +112,7 @@ public class VideoPlayerActivity extends Activity
 
         ((TextView) findViewById(R.id.videoTitle)).setText(b.getString("title"));
         ((TextView) findViewById(R.id.videoDescription)).setText(b.getString("description"));
-         ((RatingBar) findViewById(R.id.ratingBar1)).setRating(b.getFloat("rating"));
+        ((RatingBar) findViewById(R.id.ratingBar1)).setRating(b.getFloat("rating"));
         mVideoView = (VideoView) findViewById(R.id.videoView1);
         mVideoView.setVideoPath(b.getString("source"));
         mVideoView.setOnCompletionListener(this);
@@ -159,13 +159,22 @@ public class VideoPlayerActivity extends Activity
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
+                AnimationSet set = new AnimationSet(false);
+
                 Animation fadeOut = new AlphaAnimation(1, 0);
                 fadeOut.setInterpolator(new DecelerateInterpolator()); //add this
-                fadeOut.setDuration(700);
+                fadeOut.setDuration(1500);
 
-                ((View)findViewById(R.id.controlsLayout)).startAnimation(fadeOut);
+                Animation pullUp = new TranslateAnimation(0.0f,0.0f,0.0f,-300f);
+                pullUp.setInterpolator(new DecelerateInterpolator());
+                pullUp.setDuration(1500);
+
+                set.addAnimation(pullUp);
+                set.addAnimation(fadeOut);
+                ((View)findViewById(R.id.controlsLayout)).startAnimation(set);
+
                 try {
-                    Thread.sleep(700);
+                    Thread.sleep(1500);
                     // Do some stuff
                 } catch (Exception e) {
                     e.getLocalizedMessage();

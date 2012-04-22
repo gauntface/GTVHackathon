@@ -13,15 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d70e722a-0c69-4ce6-9ce7-ab00d64c8ad5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable/search_icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable/search_btn.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable/search_draw.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable/settings_btn.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="$PROJECT_DIR$/res/layout/main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/runnable/ArchiveDownloadRunnable.java" afterPath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/runnable/ArchiveDownloadRunnable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoPlayerActivity.java" afterPath="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoPlayerActivity.java" />
     </list>
     <ignored path="GTVHackathon.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -79,10 +71,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="35" selection-start="3128" selection-end="3128" vertical-scroll-proportion="0.7715736">
+            <state line="79" column="36" selection-start="3081" selection-end="3081" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -97,10 +89,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="VideoPlayerActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoPlayerActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="167" column="75" selection-start="6346" selection-end="6346" vertical-scroll-proportion="0.128">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="19" selection-start="1912" selection-end="1912" vertical-scroll-proportion="-3.90625">
+            <state line="283" column="28" selection-start="10159" selection-end="10159" vertical-scroll-proportion="-3.4375">
               <folding>
                 <element signature="e#2150#2720#0" expanded="true" />
                 <element signature="e#2708#2709#0" expanded="true" />
@@ -111,15 +112,6 @@
                 <element signature="e#5394#5587#0" expanded="true" />
                 <element signature="e#5568#5569#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VideoTimerProvider.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoTimerProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="48" selection-start="1107" selection-end="1107" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -146,7 +138,6 @@
         <option value="$PROJECT_DIR$/assets/test.xml" />
         <option value="$PROJECT_DIR$/res/layout/disclaimer.xml" />
         <option value="$PROJECT_DIR$/res/layout/event_popup.xml" />
-        <option value="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoPlayerActivity.java" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/drawable/search_draw.xml" />
         <option value="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/runnable/ArchiveDownloadRunnable.java" />
@@ -154,6 +145,7 @@
         <option value="$PROJECT_DIR$/res/drawable/search_btn.xml" />
         <option value="$PROJECT_DIR$/res/drawable/settings_btn.xml" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
+        <option value="$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoPlayerActivity.java" />
       </list>
     </option>
   </component>
@@ -636,12 +628,13 @@
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30868903" sideWeight="0.74486303" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30868903" sideWeight="0.74486303" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.49695122" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6712329" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.255137" sideWeight="0.5342988" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.255137" sideWeight="0.53734756" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.6712329" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -652,10 +645,9 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20121951" sideWeight="0.74486303" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.255137" sideWeight="0.46036586" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.255137" sideWeight="0.45731708" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -719,16 +711,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/test.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="92" selection-start="796" selection-end="796" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/disclaimer.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="32" selection-start="1489" selection-end="1489" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/event_popup.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="38" selection-start="480" selection-end="480" vertical-scroll-proportion="0.0" />
@@ -774,13 +756,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/details.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="50" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable/search_draw.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="28" selection-start="161" selection-end="161" vertical-scroll-proportion="0.0">
@@ -792,22 +767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="43" column="659" selection-start="2780" selection-end="2780" vertical-scroll-proportion="0.97461927">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="19" selection-start="1912" selection-end="1912" vertical-scroll-proportion="-3.90625">
-          <folding>
-            <element signature="e#2150#2720#0" expanded="true" />
-            <element signature="e#2708#2709#0" expanded="true" />
-            <element signature="e#2767#3120#0" expanded="true" />
-            <element signature="e#3109#3110#0" expanded="true" />
-            <element signature="e#3287#3843#0" expanded="true" />
-            <element signature="e#3832#3833#0" expanded="true" />
-            <element signature="e#5394#5587#0" expanded="true" />
-            <element signature="e#5568#5569#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -825,9 +784,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="283" column="28" selection-start="10159" selection-end="10159" vertical-scroll-proportion="-3.4375">
+          <folding>
+            <element signature="e#2150#2720#0" expanded="true" />
+            <element signature="e#2708#2709#0" expanded="true" />
+            <element signature="e#2767#3120#0" expanded="true" />
+            <element signature="e#3109#3110#0" expanded="true" />
+            <element signature="e#3287#3843#0" expanded="true" />
+            <element signature="e#3832#3833#0" expanded="true" />
+            <element signature="e#5394#5587#0" expanded="true" />
+            <element signature="e#5568#5569#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/C.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="13" selection-start="47" selection-end="47" vertical-scroll-proportion="0.08791209">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="35" selection-start="3128" selection-end="3128" vertical-scroll-proportion="0.7715736">
+        <state line="79" column="36" selection-start="3081" selection-end="3081" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/details.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="50" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gtvhackathon/chuggr/VideoPlayerActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="167" column="75" selection-start="6346" selection-end="6346" vertical-scroll-proportion="0.128">
           <folding />
         </state>
       </provider>
