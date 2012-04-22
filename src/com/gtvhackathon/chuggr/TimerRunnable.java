@@ -14,7 +14,7 @@ public class TimerRunnable implements Runnable {
     private TimerProvider mProvider;
     private TimerListener mListener;
     private Handler mHandler;
-    
+    private String r = "";
     public TimerRunnable(TimerProvider provider, TimerListener listener) {
         mIsRunning = false;
         mProvider = provider;
@@ -25,7 +25,7 @@ public class TimerRunnable implements Runnable {
             public void handleMessage(Message msg) {
                 switch(msg.what) {
                 case MSG_ON_EVENT_TRIGGERED:
-                    mListener.onEventTriggered(msg.arg1);
+                    mListener.onEventTriggered(msg.arg1, r);
                     break;
                 }
             }
@@ -44,6 +44,7 @@ public class TimerRunnable implements Runnable {
         
         while(mIsRunning && currentEventIndex < noOfEvents) {
             currentEventMilliseconds = mProvider.getEventTimeSeconds(currentEventIndex) * 1000;
+            r = mProvider.getEventReason(currentEventIndex);
             millisecondsPosition = mProvider.getCurrentVideoPosition();
             if(millisecondsPosition != -1) {
                 if(millisecondsPosition< currentEventMilliseconds) {
@@ -83,13 +84,14 @@ public class TimerRunnable implements Runnable {
     public interface TimerProvider {
         
         public int getCurrentVideoPosition();
+        public String getEventReason(int index);
         public int getEventTimeSeconds(int index);
         public int getNumberOfEvents();
     }
     
     public interface TimerListener {
         
-        public void onEventTriggered(int eventIndex);
+        public void onEventTriggered(int eventIndex, String reason);
         
     }
     

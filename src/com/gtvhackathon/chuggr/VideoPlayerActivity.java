@@ -14,7 +14,6 @@
 
 package com.gtvhackathon.chuggr;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -23,8 +22,6 @@ import android.os.Handler;
 import android.view.animation.*;
 import android.widget.*;
 import com.gtvhackathon.chuggr.TimerRunnable.TimerListener;
-import com.gtvhackathon.chuggr.TimerRunnable.TimerProvider;
-import com.gtvhackathon.chuggr.windows.EventPopupWindow;
 
 import android.app.Activity;
 import android.content.Context;
@@ -33,12 +30,9 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.view.WindowManager;
 
 // The VideoPlayerActivity which sets up a video view, attaches a MediaControler to it.
 // Communication is via private intent.  This could use the MediaPlayer API's but that would
@@ -177,9 +171,9 @@ public class VideoPlayerActivity extends Activity
     }
 
     @Override
-    public void onEventTriggered(int eventIndex) {
+    public void onEventTriggered(int eventIndex, String reason) {
         Log.v(C.TAG, "onEventTriggered() for event = "+eventIndex);
-        eventAnimateBeerTrigger(eventIndex, null);
+        eventAnimateBeerTrigger(eventIndex, reason);
     }
 
     public void eventAnimateBeerTrigger(int eventIndex, String text){

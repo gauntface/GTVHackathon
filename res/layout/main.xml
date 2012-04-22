@@ -94,19 +94,20 @@
                 <TextView
                         android:paddingTop="30dip"
                         android:textColor="#fff"
-                        android:textSize="22dip"
+                        android:textSize="16pt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/welcome" />
 
                 <TextView
                         android:paddingTop="30dip"
-                        android:textSize="22dip"
+                        android:textSize="12pt"
                         android:textColor="#fff"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="bottom|right"
                         android:linksClickable="true"
+                        android:autoLink="web"
                         android:text="@string/drinkaware" />
 
             </LinearLayout>
