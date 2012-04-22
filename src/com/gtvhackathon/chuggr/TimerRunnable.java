@@ -44,13 +44,14 @@ public class TimerRunnable implements Runnable {
         
         while(mIsRunning && currentEventIndex < noOfEvents) {
             currentEventMilliseconds = mProvider.getEventTimeSeconds(currentEventIndex) * 1000;
-            r = mProvider.getEventReason(currentEventIndex);
+
             millisecondsPosition = mProvider.getCurrentVideoPosition();
             if(millisecondsPosition != -1) {
                 if(millisecondsPosition< currentEventMilliseconds) {
                     // We need to sleep for a while
                     waitFor(millisecondsPosition - currentEventMilliseconds);
                 } else {
+                    r = mProvider.getEventReason(currentEventIndex);
                     Message msg = Message.obtain(mHandler, MSG_ON_EVENT_TRIGGERED);
                     msg.arg1 = currentEventIndex;
                     mHandler.sendMessage(msg);

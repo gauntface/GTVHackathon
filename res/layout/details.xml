@@ -19,11 +19,24 @@
     <LinearLayout android:layout_alignParentLeft="true"
         android:id="@+id/linearLayout1" android:layout_height="match_parent"
         android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
         >
+
         <VideoView android:id="@+id/videoView1"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
+
+    <ProgressBar
+            android:id="@+id/progressVideo"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            />
 
     <!-- This didn't need to stay a linear layout, I originally had more
         in it, but all the adjustments were here, so I kept it. If you don't need
@@ -43,9 +56,10 @@
                    android:layout_height="wrap_content" android:layout_width="wrap_content"
                    android:layout_gravity="center|bottom" />
 
-        <TextView android:text="TextView"
+        <com.gtvhackathon.chuggr.EllipsizingTextView android:text="TextView"
             android:layout_height="wrap_content" android:layout_width="wrap_content"
             android:maxWidth="500dip"
+            android:maxLines="5"
             android:id="@+id/videoDescription"
             style="@android:style/TextAppearance.Small" android:gravity="left" />
     </LinearLayout>

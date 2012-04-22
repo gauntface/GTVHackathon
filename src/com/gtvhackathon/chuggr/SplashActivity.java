@@ -24,34 +24,6 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
-        // Display the disclaimer if they haven't read it before...
-        final SharedPreferences mPrefs = getSharedPreferences(SHAREDPREFNAME,0);
-        Boolean agree = mPrefs.getBoolean("agree_terms",false);
-
-        if (!agree){
-
-            final Dialog dialog = new Dialog(SplashActivity.this);
-            dialog.setContentView(R.layout.disclaimer);
-            dialog.setTitle("Terms and Conditions");
-            dialog.setCancelable(true);
-
-            Button confirm = (Button) dialog.findViewById(R.id.btnConfirm);
-            confirm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mPrefs.edit().putBoolean("agree_terms",true).commit();
-                    createHandlerAndRunnable();
-                    dialog.dismiss();
-                }
-            });
-            dialog.show();
-
-        }
-        else{
-            createHandlerAndRunnable();
-        }
-        // Time out splash
-
     }
 
 
@@ -87,6 +59,41 @@ public class SplashActivity extends Activity {
             handler.removeCallbacks(runnable);
         }
     }
-    
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+
+        // Display the disclaimer if they haven't read it before...
+        final SharedPreferences mPrefs = getSharedPreferences(SHAREDPREFNAME,0);
+        Boolean agree = mPrefs.getBoolean("agree_terms",false);
+
+        if (!agree){
+
+            final Dialog dialog = new Dialog(SplashActivity.this);
+            dialog.setContentView(R.layout.disclaimer);
+            dialog.setTitle("Terms and Conditions");
+            dialog.setCancelable(false);
+
+            Button confirm = (Button) dialog.findViewById(R.id.btnConfirm);
+            confirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mPrefs.edit().putBoolean("agree_terms",true).commit();
+                    createHandlerAndRunnable();
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+
+        }
+        else{
+            createHandlerAndRunnable();
+        }
+        // Time out splash
+
+    }
+
 
 }

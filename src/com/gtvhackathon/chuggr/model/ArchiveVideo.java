@@ -15,6 +15,7 @@ public class ArchiveVideo {
     private String mVideoURL;
 
     public String mThumb;
+    public boolean thumbDrawn = false;
 
     public ArchiveVideo() {
         mAvgRating = 0.0f;
@@ -24,6 +25,7 @@ public class ArchiveVideo {
         mIdentifier = null;
         mDownloads = -1;
         mThumb = new String();
+        mVideoURL = new String();
     }
     
     public void setAvgRating(double rating) {

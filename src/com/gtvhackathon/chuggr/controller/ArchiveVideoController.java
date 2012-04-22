@@ -27,6 +27,10 @@ public class ArchiveVideoController {
         return sArchiveController;
     }
 
+    public static void nullifyVideoController(){
+        sArchiveController = null;
+    }
+
     private Runnable mDownloadRunnable;
     private ExecutorService mExecutors;
     private ArchiveListener mListener;

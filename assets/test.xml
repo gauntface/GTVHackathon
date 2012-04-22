@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <gtvvideo>
     <event>
-        <timestamp time="2" name="First Blood" />
-        <timestamp time="5" name="Death"/>
-        <timestamp time="10" name="Weird Lady"/>
-        <timestamp time="20" name="Funny Hat"/>
-        <timestamp time="30" name="Gore"/>
-        <timestamp time="45" name="Why not???"/>
-        <timestamp time="34" name="Sexy Lady"/>
+        <timestamp time="2" name="Drink!" />
+        <timestamp time="15" name="Sirens, Drink!"/>
+        <timestamp time="28" name="Funny Hat, Drink!"/>
+        <timestamp time="38" name="Enter Bad Guy, Drink!"/>
+        <timestamp time="44" name="Enter Good Guy, Drink!"/>
+        <timestamp time="65" name="Elephant!, Drink!"/>
+        <timestamp time="73" name="Web of Doom!, Drink!"/>
+        <timestamp time="100" name="Angry Boss, Drink!"/>
+        <timestamp time="114" name="Unimpressed Train Driver, Drink!"/>
+        <timestamp time="127" name="Pwned, Drink!"/>
+        <timestamp time="138" name="Oh No!, Drink!"/>
+        <timestamp time="158" name="Yikes, Drink!"/>
+        <!--<timestamp time="100" name="Angry Boss"/>-->
         <drink>Drink One Shot</drink>
     </event>
 </gtvvideo>

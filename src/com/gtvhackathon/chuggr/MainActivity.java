@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,6 +25,11 @@ import com.gtvhackathon.chuggr.model.ArchiveVideo;
 
 import com.gtvhackathon.chuggr.controller.ArchiveVideoController;
 import com.gtvhackathon.chuggr.controller.ArchiveVideoController.ArchiveListener;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -39,7 +46,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         ((Button)findViewById(R.id.btnHorror)).setOnClickListener(this);
         ((Button)findViewById(R.id.btnComedy)).setOnClickListener(this);
         ((Button)findViewById(R.id.btnSciFi)).setOnClickListener(this);
-
+        ((Button)findViewById(R.id.btnDrama)).setOnClickListener(this);
 
         gridView = (GridView) findViewById(R.id.gridview);
 
@@ -47,7 +54,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                playVideo((ArchiveVideo) adapterView.getItemAtPosition(i));
+                ArchiveVideo video  = (ArchiveVideo) adapterView.getItemAtPosition(i);
+                if (video.getVideoURL().isEmpty()){
+                    Toast.makeText(MainActivity.this,"NOT READY YET :(",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    playVideo((ArchiveVideo) adapterView.getItemAtPosition(i));
+                }
+
+
             }
         });
 
@@ -64,6 +79,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btnSciFi:
                 new DownloadFilmInfoAsyncTask().execute("Sci-Fi");
+                break;
+            case R.id.btnDrama:
+                new DownloadFilmInfoAsyncTask().execute("Drama");
                 break;
         }
     }
@@ -85,10 +103,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         public VideoAdapter(Context c, ArrayList<ArchiveVideo> videos) {
             mContext = c;
-
-            for (ArchiveVideo video : videos){
-                this.videos.add(video);
-            }
+            this.videos = videos;
         }
 
         @Override
@@ -119,7 +134,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
 
             final ImageView iv = (ImageView) layout.findViewById(R.id.videoThumbnail);
-            new ImageViewLoadAsyncTask().execute(iv, videos.get(position).getThumb());
+
+
+            if (!videos.get(position).thumbDrawn){
+                iv.setImageResource(R.drawable.default_thumb2);
+                new ImageViewLoadAsyncTask().execute(iv, videos.get(position));
+                videos.get(position).thumbDrawn = true;
+            }
 
             ((TextView)layout.findViewById(R.id.videoTitle)).setText(videos.get(position).getTitle());
 
@@ -140,12 +161,76 @@ public class MainActivity extends Activity implements View.OnClickListener {
         private Bitmap bmp;
         private ImageView iv;
 
+        public void getVideoThumbAndUrl(ArchiveVideo video) {
+
+            String url = "http://archive.org/download/"+video.getIdentifier()+"/"+video.getIdentifier()+"_files.xml";
+
+            //initialize
+            InputStream inputStream = null;
+
+            //http post
+            try{
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(url);
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
+                inputStream = entity.getContent();
+            } catch(Exception e) {
+                Log.e(C.TAG, "Error in http connection " + e.toString());
+            }
+
+            String responseString = "";
+            //convert response to string
+            try{
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"),8);
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                inputStream.close();
+                responseString = sb.toString();
+            }catch(Exception e){
+                Log.e(C.TAG, "Error converting result "+e.toString());
+            }
+
+            // Inspect Response string
+            // Split by "<file name=\"
+
+            video.setVideoURL("");
+            video.setThumb("");
+
+            String tmp[]  = responseString.split("<file name");
+            for (String s:tmp){
+                String tmp2[] = s.split(" source=");
+                String s3 = tmp2[0];
+                if (tmp2[0].contains(".mp4")){
+                    s3=s3.replace("=","");
+                    s3=s3.replace("\"","");
+                    //Log.e(C.TAG, "MP4: "+s3);
+                    video.setVideoURL("http://archive.org/download/"+video.getIdentifier()+"/"+s3);
+                }
+                else if (tmp2[0].contains(".jpg")){
+                    s3=s3.replace("=","");
+                    s3=s3.replace("\"","");
+                    //Log.e(C.TAG, "JPG: "+s3);
+                    video.setThumb("http://archive.org/download/"+video.getIdentifier()+"/"+s3);
+                }
+
+            }
+        }
+
         protected Integer doInBackground(Object... objects) {
+
+            ArchiveVideo video = (ArchiveVideo) objects[1];
+
+            getVideoThumbAndUrl(video);
+
             HttpURLConnection con=null;
             try{
 
                 iv = (ImageView) objects[0];
-                String url = (String) objects[1];
+                String url = (String) video.getThumb();
 
                 URL ulrn = new URL(url);
                 con = (HttpURLConnection)ulrn.openConnection();
@@ -161,11 +246,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         protected void onProgressUpdate(Integer... progress) {
             // Remove spinner...
-            if (null != bmp)
-                iv.setImageBitmap(bmp);
-            else {
-                iv.setImageResource(R.drawable.default_thumb2);
-            }
+            if (null != bmp) iv.setImageBitmap(bmp);
         }
     }
 
@@ -173,7 +254,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         protected Integer doInBackground(String... strings) {
             // Chuck spinner on there...
-
+            ArchiveVideoController.nullifyVideoController();
             mArchiveVideoController = ArchiveVideoController.getArchiveViewController();
             mArchiveVideoController.downloadArchiveData(new ArchiveListener() {
 
@@ -185,8 +266,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 @Override
                 public void onError() {
                     // On Error - Ooops
-
-                    // Remove spinner...
                 }
 
             }, strings[0]);
@@ -212,7 +291,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             ((ProgressBar)findViewById(R.id.progressMain)).setVisibility(View.GONE);
 
             if (gridView.getAdapter()==null){
-                gridView.setAdapter(new VideoAdapter(MainActivity.this, mArchiveVideoController.getVideos()));
+                ArrayList<ArchiveVideo> tmp = mArchiveVideoController.getVideos();
+                gridView.setAdapter(new VideoAdapter(MainActivity.this, tmp ));
             }
             else{
                 ((VideoAdapter)gridView.getAdapter()).videos = mArchiveVideoController.getVideos();

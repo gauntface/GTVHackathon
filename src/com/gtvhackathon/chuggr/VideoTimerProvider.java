@@ -7,21 +7,19 @@ import android.widget.VideoView;
 
 import com.gtvhackathon.chuggr.TimerRunnable.TimerProvider;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class VideoTimerProvider implements TimerProvider {
 
     private VideoView mVideoView;
-    private int[] mEventTimes;
-    private String[] mEventResons;
-
+    ArrayList<XMLParser.timeAndReason> mEventTimesReason;
 
     public VideoTimerProvider(VideoView videoView, Context context) {
         mVideoView = videoView;
         XMLParser xmlParser = new XMLParser();
-        Vector<XMLParser.DrinkEvent> xventTimes = xmlParser.parse(XMLParser.loadFile("test.xml", context));
-        mEventTimes = xventTimes.get(0).times;
-        mEventResons = xventTimes.get(0).getDrinkReasons();
+        mEventTimesReason = xmlParser.parse(XMLParser.loadFile("test.xml", context));
+
     }
 
     @Override
@@ -35,17 +33,17 @@ public class VideoTimerProvider implements TimerProvider {
 
 
     public int getNumberOfEvents() {
-        return mEventTimes.length;
+        return mEventTimesReason.size();
     }
 
     @Override
     public int getEventTimeSeconds(int index) {
-        return mEventTimes[index];
+        return mEventTimesReason.get(index).time;
     }
 
     @Override
     public String getEventReason(int index){
-        return mEventResons[index];
+        return mEventTimesReason.get(index).reason;
     }
 
     public void setVideoView(VideoView videoView) {

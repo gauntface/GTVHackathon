@@ -40,7 +40,7 @@ import android.view.ViewGroup.LayoutParams;
 
 public class VideoPlayerActivity extends Activity
         implements AudioManager.OnAudioFocusChangeListener, MediaPlayer.OnCompletionListener,
-        MediaPlayer.OnErrorListener, TimerListener {
+        MediaPlayer.OnErrorListener, TimerListener, MediaPlayer.OnPreparedListener {
     
     public static final String TAG = "VPActivity";
 
@@ -117,6 +117,9 @@ public class VideoPlayerActivity extends Activity
         mVideoView.setVideoPath(b.getString("source"));
         mVideoView.setOnCompletionListener(this);
         mVideoView.setOnErrorListener(this);
+        mVideoView.setOnPreparedListener(this);
+
+        //findViewById(R.id.progressVideo).setVisibility(View.GONE);
 
         MediaController mc = new MediaController(this, true);
 
@@ -156,7 +159,19 @@ public class VideoPlayerActivity extends Activity
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
+                Animation fadeOut = new AlphaAnimation(1, 0);
+                fadeOut.setInterpolator(new DecelerateInterpolator()); //add this
+                fadeOut.setDuration(700);
+
+                ((View)findViewById(R.id.controlsLayout)).startAnimation(fadeOut);
+                try {
+                    Thread.sleep(700);
+                    // Do some stuff
+                } catch (Exception e) {
+                    e.getLocalizedMessage();
+                }
                 findViewById(R.id.controlsLayout).setVisibility(View.GONE);
+
             }
         };
         handler.postDelayed(runnable, 8000);
@@ -179,6 +194,11 @@ public class VideoPlayerActivity extends Activity
     public void eventAnimateBeerTrigger(int eventIndex, String text){
         if (text==null) text="Drink!";
         new AnimationBeerAsyncTask().execute(text);
+    }
+
+    @Override
+    public void onPrepared(MediaPlayer mediaPlayer) {
+        findViewById(R.id.progressVideo).setVisibility(View.GONE);
     }
 
 
